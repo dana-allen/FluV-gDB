@@ -29,11 +29,11 @@ const Sequences = () => {
     
     const url = "/api/sequences/metadata/";
     const { endpointData, isPending, endpointError } = useApiEndpoint(url, params);
-    
+    console.log(endpointData)
     useEffect(() => {
         triggerLoadingWheel(isPending)
         if (endpointError) triggerError(endpointError)
-        if (endpointData) setData(endpointData);
+        if (endpointData) setData(endpointData["results"]);
     }, [endpointError, endpointData, isPending]);
 
     const handleFiltersChange = useCallback((data) => {
@@ -55,16 +55,18 @@ const Sequences = () => {
                         <Button className="paging-buttons dropdown-toggle " data-bs-toggle="dropdown" > Download </Button>
                         <ul className="dropdown-menu custom-dropdown" >
                             <li><a className="dropdown-item" onClick={() => downloadFile(data, "data.tsv", "tsv")}>Download Metadata</a></li>
-                            <li><a className="dropdown-item"><DownloadAlignment filters={filters} sequences={data}></DownloadAlignment></a></li>
+                            {/* <li><a className="dropdown-item"><DownloadAlignment filters={filters} sequences={data}></DownloadAlignment></a></li> */}
                         </ul>
                         
                     </div>
                 </ButtonGroup>
             </div>
+            {endpointData["results"] && 
             <div className='padding-table'>
                 <SequencesTable data={data} type={'sequence'} />
                 <SequencesFilter show={showFilter} onFilterSelect={handleFiltersChange} onClose={() => setShowFilter(false)}/>
             </div>
+            }
 
        </div>
        

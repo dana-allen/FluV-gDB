@@ -42,7 +42,7 @@ const IsolatesTable = ( { data=null } ) => {
                             <tr key={i} id={i}>
                             <td>
                                 <b>
-                                <Link className="gdb-link" to={`/isolate/${sequence.isolate}`} >
+                                <Link className="gdb-link" to={`/isolate/${encodeURIComponent(sequence.isolate)}`} >
                                     {sequence.isolate}
                                 </Link>
                                 </b>

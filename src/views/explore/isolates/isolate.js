@@ -15,14 +15,16 @@ import '../../../assets/styles/sequence.css'
 const Isolate = () => {
 
     const { id } = useParams();
+    const decodedId = decodeURIComponent(id);
     const { downloadFile } = useDownload();
     // Contexts
     const { triggerLoadingWheel } = useLoadingWheelHandler();
     const { triggerError } = useErrorHandler();
-
-    const url = `/api/sequence/strain/${id}`;
+    
+    const url = `/api/sequence/strain/${encodeURIComponent(decodedId)}`;
     const { endpointData, isPending, endpointError } = useApiEndpoint(url);
-
+    console.log(encodeURIComponent(decodedId))
+    console.log(url)
     const {
         meta_data,
         segments
@@ -47,8 +49,6 @@ const Isolate = () => {
     function groupByIsolate(data) {
         let grouped = {};
         const item = data[0]
-        console.log(item)
-
         grouped = {
                     isolate: item.isolate,
                     host: item.host_validated || item.host || "-",
@@ -66,7 +66,7 @@ const Isolate = () => {
         <div className='container'>
 
             <div className="row col-md-6">
-                <h2> Isolate {id} </h2>
+                <h2> Isolate {decodedId} </h2>
             </div>
 
             { tableData && 

@@ -35,7 +35,7 @@ function useApiEndpoint(url, params = {}) {
          // Convert params object to query string
          const queryString = new URLSearchParams(params).toString();
          const fullUrl = `${process.env.REACT_APP_BACKEND_URL}${url}${queryString ? `?${queryString}` : ''}`;
- 
+          console.log(fullUrl)
          fetch(fullUrl, {
             headers: { 'database': process.env.REACT_APP_DATABASE },
           })
