@@ -1,0 +1,33 @@
+.input-a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.img {
+    width: 100%;
+}
+
+.font-sm {
+    font-size:12px;
+}
+
+.font-m {
+    font-size:14px;
+}
+
+.gray-text {
+    color: gray;
+}
+
+.img-team {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 10px;                          
+}
+
+.affiliation {
+    word-wrap: break-word;
+    white-space: normal;
+}

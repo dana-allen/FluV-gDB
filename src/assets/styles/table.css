@@ -1,0 +1,14 @@
+.table-header {
+    background-color: var(--primary) !important;
+}
+
+.main-checkbox {
+    accent-color: var(--primary);
+}
+.sequence-checkbox{
+    accent-color: var(--primary);
+}
+
+.table-font {
+    font-size:12px;
+}

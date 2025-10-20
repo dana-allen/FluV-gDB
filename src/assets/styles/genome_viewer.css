@@ -1,0 +1,139 @@
+
+.genome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 25px;
+}
+
+.row-style {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.label-style {
+    width: 100px;
+    font-size: 14px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.line-area-style {
+    flex: 1;
+    position: relative;
+}
+
+.line-area-style.with-border {
+    border-bottom: 2px solid black;
+    height: 10px;
+    
+}
+
+.grey-bar {
+    background-color: #e0e0e0;
+    position: 'relative';
+}
+
+
+.main-viewer {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.selected-feature {
+    margin-top: 40px;
+    width: 100%;
+}
+.selected-feature-label {
+    margin-left: 40px;
+}
+
+.sequence_viewer {
+    padding: 10px;
+    border: 1px solid black;
+    margin-left: 50px;
+    display: flex;
+
+}
+
+.sequence_block {
+    display: flex;
+    flex-grow: 1;
+    overflow-x: scroll;
+}
+
+.sequence_block.with-gap {
+  gap: 10px;
+}
+
+
+.sequence_block_individual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sequence_block_individual.sm-gap {
+    gap: 30px;
+}
+.sequence_block_individual.lg-gap {
+    gap: 100px;
+}
+
+.sequence_block_individual.sm-width {
+    min-width: 30px;
+}
+.sequence_block_individual.lg-width {
+    min-width: 100px;
+}
+
+.blocks {
+    display: flex;
+    width: 100%;
+}
+
+.block {
+    width: 100%;
+    text-align: center;
+    color: black;
+    padding: 2px;
+    height: 20px;
+    font-size: 12px;
+}
+
+.features {
+    height: 30px;
+}
+
+.features-btn {
+    position: absolute;
+    height: 100%;
+    background-color: #008cba;
+    border: 1px solid #008cba;
+    font-size: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
+.features-btn:hover {
+    background-color: #005f7f;
+}
+
+.labels-block {
+    display:flex;
+    flex-direction:column;
+    margin-right:50px;
+    text-align:right;
+}
+
+.label-block {
+    width: 75px;
+    text-align: right;
+    font-size: 12px;
+    padding-bottom: 2px;
+}

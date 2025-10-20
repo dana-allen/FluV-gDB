@@ -1,0 +1,86 @@
+
+/* New Stuff */
+
+.tree-box {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.tree-wrapper {
+  border: 1px solid #ccc;
+}
+
+.selection-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.search-input {
+  display: flex;
+  align-items: stretch;
+}
+
+.search-label {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px 0 0 6px;
+    border: 1px solid #ccc;
+    border-right: none;
+    outline: none;
+}
+
+.search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.75rem;
+    border-radius: 0 6px 6px 0;
+    border: 1px solid var(--secondary);
+    background: var(--secondary);
+    cursor: pointer;
+    color: white;
+}
+
+.reset-row {
+    display: flex;
+    align-items: center;
+    align-content: right;
+}
+
+.reset-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.75rem;
+    border-radius: 6px 6px 6px 6px;
+    border: 1px solid var(--secondary);
+    height: 100%;
+    background: var(--secondary);
+    cursor: pointer;
+    color: white;
+}
+
+.reset-btn:hover {
+    background-color: white;
+    color: var(--secondary);
+    border-color: white;
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+}
+
+.rotate-45 {
+    transform: rotate(45deg);
+}
+
+.rotate-135 {
+    transform: rotate(135deg);
+}

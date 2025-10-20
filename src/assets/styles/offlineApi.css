@@ -1,0 +1,12 @@
+.btn-api-no-outline { 
+    color: var(--secondary) !important;
+    background-color: #fff !important;
+    border-color: none; /*set the color you want here*/
+    border: none;
+    
+  }
+  .btn-api-no-outline:hover, .btn-api-no-outline:focus, .btn-api-no-outline:active, .btn-api-no-outline.active, .open>.dropdown-toggle.btn-api-no-outline {
+    color: var(--secondary) !important;
+    background-color: #fff !important;
+    border-color: #fff !important; /*set the color you want here*/
+  }

@@ -1,0 +1,144 @@
+[
+    {
+        "name":"Dr Kirstyn Brunker",
+        "title":"Research Fellow",
+        "affiliation":"School of Biodiversity, Animal Health & Comparative Medicine",
+        "info": "Dr. Brunker is an MRC research fellow passionate about applying genomics in One Health systems to enhance pathogen surveillance and management in low- and middle-income countries. Her research focuses on developing platforms for deployable and accessible sequencing and analysis of the rabies virus, with the goal of converting knowledge into action. This involves generating and analysing near real-time genetic data for routine surveillance and rapid epidemiological investigations.",
+        "photo_src": "/team/KirstynBrunker.jpg",
+        "rg_link": "https://www.researchgate.net/profile/Kirstyn_Brunker",
+        "twitter_link": "https://twitter.com/intent/follow?screen_name=kirstynbrunker"},
+
+    {
+        "name":"Dr Roman Biek",
+        "title": "Reader",
+        "affiliation":"Institute of Biodiversity, Animal Health and Comparative Medicine",
+        "info": "Dr. Roman Biek is an evolutionary ecologist studying infectious disease dynamics in animal populations. Much of his research has focussed on zoonotic pathogens, including rabies virus. He is particularly interested in the environmental and evolutionary drivers of pathogen emergence, spread, and persistence and how these drivers can be identified by integrating genetic information with other types of data.",
+        "photo_src": "/team/RomanBiek.jpg",
+        "rg_link": "https://www.researchgate.net/profile/Roman_Biek",
+        "twitter_link": "https://twitter.com/intent/follow?screen_name=rbiek"
+    },
+
+    {
+        "name":"Dr Rob Gifford",
+        "title": "Research Bioinformatician / Evolutionary Biologist",
+        "affiliation":"Centre for Virus Research",
+        "info": "Dr Gifford's research addresses the ecology and evolution of viruses. He has a strong interest in facilitating the use of genetic approaches to track viral evolution.",
+        "photo_src": "/team/RobGifford.jpg",
+        "rg_link": "https://www.researchgate.net/profile/Robert_Gifford",
+        "twitter_link": "https://twitter.com/intent/follow?screen_name=paleovirologist"
+    },
+
+    {
+        "name":"Prof Katie Hampson",
+        "title": "Professor",
+        "affiliation":"School of Biodiversity, Animal Health & Comparative Medicine",
+        "info": "Dr Katie Hampson is a Wellcome Trust Senior Research Fellow. Her research focuses on the epidemiological dynamics and control of dog-mediated rabies combining field research with quantitative analyses, working in East Africa, Southeast Asia, Latin America and Europe, to address fundamental and applied questions. In Tanzania, she uses contact tracing and whole genome sequencing, combined with large-scale vaccination programmes and surveillance systems to understand transmission dynamics and investigate cost-effective approaches for rabies control and prevention. With international organisations and governments she uses modelling and analyses to learn from control efforts, with a focus on disease elimination.",
+        "photo_src": "/team/KatieHampson.jpg",
+        "rg_link": "https://www.researchgate.net/profile/Katie_Hampson",
+        "twitter_link": "https://twitter.com/intent/follow?screen_name=hampson_katie"
+    },
+
+    {
+        "name":"Dr Denise Marston",
+        "title": "Senior Scientific Officer",
+        "affiliation":"Wildlife Zoonoses & Vector-Borne Diseases Research Group, Animal and Plant Health Agency",
+        "info": "Denise Marston is a postdoctoral researcher and rabies molecular test consultant at the UK OIE reference laboratory for rabies. Her key research interests are utilising NGS methodologies to investigate the transmission and evolution of zoonotic viruses between different host reservoirs (in particular rabies viruses). Denise has been involved in the discovery and characterisation of a number of novel lyssaviruses including Ikoma lyssavirus and Gannoruwa bat lyssavirus and has a keen interest in promoting the use of whole genome sequences for virus characterisation.",
+        "photo_src": "/team/DeniseMarston.jpg",
+        "rg_link": "https://www.researchgate.net/profile/Denise_Marston2",
+        "twitter_link": "https://twitter.com/intent/follow?screen_name=denisemarston"
+    },
+
+    {
+        "name":"Dr Sandeep Kasaragod",
+        "title": "Bioinformatician",
+        "affiliation":"School of Biodiversity, Animal Health & Comparative Medicine",
+        "info": "Dr. Kasaragod is a Bioinformatician, he is passionate about working on genome sequencing data analysis. He works majorly on the development of the workflow and tools to support the virus research.",
+        "photo_src": "/rabies_favicon_md.svg",
+        "rg_link": "",
+        "twitter_link": ""
+    },
+
+    {
+        "name":"Dr Joseph Hughes",
+        "title": "Bioinformatician",
+        "affiliation":"MRC University of Glasgow Centre for Virus Research",
+        "info": null,
+        "photo_src": "/rabies_favicon_md.svg",
+        "rg_link": null,
+        "twitter_link": null
+    },
+
+    {
+        "name":"Dana Allen",
+        "title": "Research Software Engineer",
+        "affiliation":"MRC University of Glasgow Centre for Virus Research",
+        "info": null,
+        "photo_src": "/rabies_favicon_md.svg",
+        "rg_link": null,
+        "twitter_link": ""
+    },
+
+    {
+        "name":"Dr Daniel Streicker",
+        "title": "Sir Henry Dale Research Fellow",
+        "affiliation":"Institute of Biodiversity, Animal Health and Comparative Medicine",
+        "info": "Dr Streicker uses approaches from ecology and evolutionary biology to improve forecasting, prevention and control of emerging viruses. His current research interests include identifying how host ecology and phylogeny shape patterns of cross species transmission in bat rabies, understanding why culling has failed to prevent rabies spillover from vampire bats to livestock and whether oral vaccines could be more effective and how information in viral genomes can inform surveillance and response to emerging RNA viruses.",
+        "photo_src": "/team/DanielStreicker.jpg",
+        "rg_link": "https://www.researchgate.net/profile/Daniel_Streicker",
+        "twitter_link": "https://twitter.com/intent/follow?screen_name=DanielStreicker",
+        "status":1
+    },
+    {
+        "name":"Dr Andres Velasco-Villa",
+        "title": "Associate Service Fellow Microbiologist",
+        "affiliation":"Pox Virus Rabies Branch, Division of High Consequence Pathogens and Pathology, Centers for Disease Control and Prevention",
+        "info": "Dr Velasco-Villa has worked on a wide breadth of public health related laboratory-based activities for the early detection and monitoring of RABV major reservoir hosts, worldwide. He is particularly interested in understanding contemporary/historical dissemination and transmission pathways leading to rabies virus current complex ecology. Dr Velasco-Villa’s research has contributed to the identification of the canine origin of major ongoing wildlife rabies epizootics in the Americas, Asia and Africa, as a consequence of longstanding rabies epizootics in domestic dogs. Dr Velasco-Villa has spent most of his career studying the diversity of RABV in different species of bats, discovering potentially cryptic cycles and rare transmission chains likely derived in viral host shifts in to terrestrial mesocarnivores across the Americas. His lifetime work has had a direct impact on disease control, prevention and elimination efforts globally.",
+        "photo_src": "/team/AndresVelascoVilla.jpg",
+        "rg_link": "https://www.researchgate.net/profile/Andres_Velasco-Villa",
+        "twitter_link": "",
+        "status":1
+    },
+    {
+        "name":"Dr Josh Singer",
+        "title": "Research Software Engineer",
+        "affiliation":"Centre for Virus Research",
+        "info": "",
+        "photo_src": "/team/JoshSinger.jpg",
+        "rg_link": "",
+        "twitter_link": "",
+        "status":0
+    },
+    {
+        "name":"Dr Orges Koci",
+        "title": "Research Software Engineer",
+        "affiliation":"Centre for Virus Research",
+        "info": "Dr Koci is a research software engineer with academic experience in software development and bioinformatics. He maintains GLUE, the data-centric virus sequence software framework which underlies the RABV-GLUE project. He also maintains the RABV-GLUE dataset and web application.",
+        "photo_src": "/team/OrgesKoci.jpg",
+        "rg_link": "https://www.researchgate.net/profile/Orges_Koci2",
+        "twitter_link": "",
+        "status":0
+    },
+
+    {
+        "name":"Afrida Mukaddas",
+        "title": "Research Software Engineer",
+        "affiliation":"Centre for Virus Research",
+        "info": null,
+        "photo_src": "/team/AfridaMukaddas.jpeg",
+        "rg_link": "",
+        "twitter_link": "",
+        "status":0
+    },
+    {
+        "name":"Dr Kathryn Campbell",
+        "title": "PhD Student",
+        "affiliation":"Institute of Biodiversity, Animal Health and Comparative Medicine",
+        "info": "Kathryn Campbell is a former PhD student whose work encompassed aspects of genomic surveillance to guide rabies elimination. Her research focused on producing an easy-to-use, objective and transferable classification tool (MAD DOG) for tracking viruses at high resolution. This allows identification of areas of persistence and transmission and patterns of virus spread not previously apparent with coarser resolution classifications.",
+        "photo_src": "/team/KathrynCampbell.jpg",
+        "rg_link": "https://www.researchgate.net/profile/Kathryn-Campbell-7",
+        "twitter_link": "https://twitter.com/intent/follow?screen_name=ThatKatC",
+        "status":0
+    }
+
+
+]

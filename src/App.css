@@ -1,0 +1,298 @@
+:root {
+  --primary: #003049;
+  --secondary:#2E7D32;
+  --secondary-light: #4CAF50;
+}
+
+.container {
+  text-align: left;
+  padding-top: 20px;
+  max-width: 95% !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.btn-main:hover, .open>.dropdown-toggle.btn-main {
+  color: #fff !important;
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important; /*set the color you want here*/
+  border-radius: 5px !important;
+}
+.btn-main {
+  color: var(--secondary) !important;
+  background-color: #fff !important;
+  border-color: #fff !important; /*set the color you want here*/
+}
+
+.btn-main-filled {
+  color: #fff !important;
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important; /*set the color you want here*/
+  border-radius: 5px !important;
+  
+}
+.btn-main-filled:hover, .btn-main-filled:active, .open>.dropdown-toggle.btn-main-filled {
+  color: var(--secondary) !important;
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+
+
+
+.btn-secondary-filled {
+  color: #fff !important;
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important; /*set the color you want here*/
+  border-radius: 5px !important;
+  
+}
+.btn-secondary-filled:hover, .btn-secondary-filled:active, .open>.dropdown-toggle.btn-secondary-filled {
+  color: var(--primary) !important;
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
+.btn-secondary-outline{
+  color: var(--primary) !important;
+  background-color: #fff !important;
+  border-color: var(--primary) !important; /*set the color you want here*/
+  border-radius: 5px !important;
+  
+}
+.btn-secondary-outline:hover, .btn-secondary-outline:focus, .btn-secondary-outline:active, .btn-secondary-outline.active, .open>.dropdown-toggle.btn-secondary-outline {
+  color: var(--primary) !important;
+  background-color: #fff !important;
+  border-color: #fff !important; /*set the color you want here*/
+}
+
+
+
+.btn-main-outline{
+  color: var(--secondary) !important;
+  background-color: #fff !important;
+  border-color: var(--secondary) !important; /*set the color you want here*/
+  border-radius: 5px !important;
+  
+}
+.btn-main-outline:hover, .btn-main-outline:focus, .btn-main-outline:active, .btn-main-outline.active, .open>.dropdown-toggle.btn-main-outline {
+  color: var(--secondary) !important;
+  background-color: #fff !important;
+  border-color: #fff !important; /*set the color you want here*/
+}
+
+/* This needs to go back into the favicon file  width="30" height="30"  */
+.custom-svg {
+  /* color: #008 !important;
+  fill: #008 !important; */
+  height: auto !important;
+  width: "200" !important;
+}
+
+
+
+.custom-link-nav {
+  text-decoration:none;
+  color:var(--bs-dropdown-link-color);
+}
+
+.custom-link-nav:hover {
+  /* text-decoration:underline; */
+  color: var(--secondary);
+}
+
+.hue {
+  fill: red;
+  animation: pulse 12s infinite;
+  animation-direction: alternate;
+}
+
+.primary-color {
+  color:var(--primary) !important;
+}
+
+.secondary-color {
+  color:var(--secondary) !important;
+}
+
+.db-status.failure {
+  padding-left: 10px;
+  background-color: #f8d7da;
+  border: 2px solid #dc3545;
+  color: #721c24;
+}
+
+.container-home {
+  position: relative;
+  width: 100vw;
+  height:100hw;
+  z-index:-1;
+  overflow:hidden;
+} 
+.svg1 {
+  position: relative;
+  /* position: absolute; */
+  top: 5%;
+  left: 10%;
+}
+.svg2 {
+  position: absolute;
+  /* position: absolute; */
+  top: 20%;
+  left: 80%;
+}
+
+.background-svg{
+  position: absolute;
+  width: 100%;
+  height:100vw;
+  top:20%;
+  left:40%;
+  z-index:-1;
+  
+}
+
+.content{
+  position:relative !important;
+  z-index:1;
+}
+
+
+pre {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+code {
+  font-family: "Courier New", monospace;
+}
+
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 80%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+  color: #333;
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+.float-right {
+  float:right
+}
+
+.float-left {
+  float:left
+}
+
+
+
+
+/* Tooltip container */
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip-container .tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.team-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.team-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+/*  */
+
+.accent-color-primary {
+  accent-color: var(--primary)
+}

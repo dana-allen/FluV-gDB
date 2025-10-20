@@ -1,0 +1,22 @@
+
+.title-sub {
+    float:left;
+    color:var(--primary);
+}
+
+.table-font {
+    font-size:12px;
+}
+
+.reference {
+    float:left;
+}
+
+.exclusion-td {
+    background-color:#f8d7da !important;
+}
+
+.coverage {
+    color: var(--secondary);
+    text-decoration: none;
+}

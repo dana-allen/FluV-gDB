@@ -1,0 +1,15 @@
+.custom-dropdown a:active {
+    background: none !important;
+}
+
+.right-align {
+    text-align:right;
+}
+
+.left-align {
+    text-align:left;
+}
+
+.padding-table {
+    padding-top: 0px;
+}

@@ -1,0 +1,26 @@
+.paging-buttons {
+  color: #fff;
+  background-color: var(--secondary);
+  border-color: #fff;
+  border-radius: 5px !important;
+}
+
+.paging-buttons.show {
+  color: #fff;
+  background-color: var(--secondary);
+  border-color: #fff;
+  border-radius: 5px !important;
+}
+
+.paging-buttons:hover {
+  background-color: var(--secondary-light) !important;
+  border: var(--secondary-light);
+  border-radius: 5px !important;
+}
+
+.paging-buttons:disabled {
+  background-color: var(--secondary-light) !important;
+  border: var(--secondary);
+  border-radius: 5px !important;
+}
+

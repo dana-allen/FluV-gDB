@@ -1,0 +1,63 @@
+
+/* This needs to go back into the favicon file  width="30" height="30"  */
+
+.gdb-link {
+    text-decoration:none;
+    color: var(--secondary);
+}
+
+.gdb-link:hover {
+text-decoration:underline;
+color: var(--secondary);
+}
+
+
+.custom-link {
+    text-decoration:none;
+    color: var(--secondary);
+}
+  
+.custom-link:hover {
+    text-decoration:underline;
+    color: var(--secondary);
+}
+
+.custom-dropdown a:active {
+    background: none !important;
+}
+
+.primary-color {
+    color:var(--primary);
+}
+  
+.secondary-color {
+    color:var(--secondary);
+}
+
+  /* Styling */
+.align-center {
+    text-align:center;
+}
+
+.align-left {
+    text-align:left;
+}
+
+.align-right {
+    text-align:right;
+}  
+
+.size-12-font {
+    font-size: 12px;
+}
+
+
+.success {
+    /* background-color: #d4edda; */
+    /* border: 2px solid #28a745; */
+    color: #28a745;
+}
+
+.failure {
+    color: #dc3545;
+}

@@ -1,0 +1,18 @@
+.inactive-steps {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #CCC;
+}
+
+.input-container {
+  margin-bottom: 10px;
+}
+.input-box {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.example-btn {
+  margin-right: 10px;
+}

@@ -1,0 +1,113 @@
+.tree-selection-brush .extent {
+  fill-opacity: 0.05;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+.tree-scale-bar text {
+  font: "Helvetica Neue";
+}
+
+.tree-scale-bar line,
+.tree-scale-bar path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.node circle,
+.node ellipse,
+.node rect {
+  fill: steelblue;
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+.internal-node circle,
+.internal-node ellipse,
+.internal-node rect {
+  fill: #ccc;
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+.node {
+  font: 10px "Helvetica Neue";
+}
+
+.phylotree-node-text .selected {
+  color:purple;
+}
+
+.node-selected {
+  fill: #f00 !important;
+}
+
+.node-collapsed circle,
+.node-collapsed ellipse,
+.node-collapsed rect {
+  fill: black !important;
+}
+
+.node-tagged {
+  fill: #00f;
+  /* color:#00f !important; */
+  stroke:#00f !important;
+  stroke-width: 0.5px !important;
+}
+
+.branch {
+  fill: none;
+  stroke: #999;
+  stroke-width: 2px;
+}
+
+.clade {
+  fill: purple;
+  stroke: purple;
+  stroke-width: 2px;
+  opacity: 0.5;
+}
+
+.branch-selected {
+  stroke: red !important;
+  stroke-width: 3px;
+}
+.branch-selected-2 {
+  stroke: purple !important;
+  stroke-width: 3px;
+}
+
+[branch-selected-2="true"] {
+  stroke: purple !important;
+  stroke-width: 3px;
+}
+
+.branch-tagged {
+  stroke: #00f !important;
+  /* stroke-dasharray: 10, 5; */
+  stroke-width: 3px;
+}
+
+.branch-tracer {
+  stroke: #bbb;
+  stroke-dasharray: 3, 4;
+  stroke-width: 1px;
+}
+
+.branch-multiple {
+  stroke-dasharray: 5, 5, 1, 5;
+  stroke-width: 3px;
+}
+
+.branch:hover {
+  /* stroke-width: 10px; */
+}
+
+.internal-node circle:hover,
+.internal-node ellipse:hover,
+.internal-node rect:hover {
+  fill: black;
+  stroke: #ccc;
+}
+

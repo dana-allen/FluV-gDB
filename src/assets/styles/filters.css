@@ -1,0 +1,58 @@
+.info-text {
+    font-size:12px;
+}
+
+.left-margin {
+    margin-left: 50px;
+}
+
+.download-btn {
+    border: none;
+}
+
+.filter-container {
+    padding-bottom: 10px;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #DEE2E6;
+    align-self: stretch;
+}
+
+.radio {
+    margin-right:5px;
+}
+
+.primary-background {
+    background-color: var(--primary);
+    border: none;
+}
+
+.advanced-container {
+    margin: 10px 0;
+    border: 1px solid #CCC;
+    padding: 10px;
+}
+
+.advanced-child-1{
+    flex:1;
+    margin-right: 10px;
+}
+
+.advanced-child-btn {
+    display:flex;
+    align-items:center;
+}
+
+.advanced-child-2 {
+    flex-basis: 100%;
+    margin-top: 5px;
+}
+
+.advanced-child-2-label {
+    font-size: 12px;
+    margin:0;
+}

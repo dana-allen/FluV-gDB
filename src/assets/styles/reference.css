@@ -1,0 +1,11 @@
+.table-coordinates {
+    font-size: 12px; 
+}
+
+.sub-text {
+    font-size: 80%;
+}
+
+.genome {
+    color:var(--primary)
+}
