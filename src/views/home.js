@@ -60,7 +60,7 @@ const Home = () => {
             <div>
                 <div className="row content banner">
                     <div className="col banner-container banner-gradient-spots">
-                        <ReactSVG className='banner-svg' src="/home_background.svg" /> 
+                        <ReactSVG className='banner-svg' src="/home_background.svg" style={{width:'100%'}}/> 
                         <h1 className='banner-title'><b>{process.env.REACT_APP_VIRUS_ABB}-{process.env.REACT_APP_WEB_RESOURCE}</b></h1>
                         <h4 className='banner-subtitle'><b>A <b>G</b>enome <b>D</b>ata<b>b</b>ase Resource for <b>Flu</b> <b>V</b>irus</b></h4>
                     </div>
