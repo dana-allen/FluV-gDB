@@ -19,8 +19,12 @@ const SequenceDetails = ({ meta_data, alignment }) => {
                         <td><Link className='custom-link' to={`https://www.ncbi.nlm.nih.gov/nuccore/${meta_data.primary_accession}`} target="_blank"><FontAwesomeIcon icon={faLink} /> {meta_data.primary_accession}</Link></td>
                     </tr>
                     <tr>				
-                        <td><b>Clade membership</b></td>
-                        <td>{meta_data.major_clade} {meta_data.minor_clade}</td>
+                        <td><b>Serotype</b></td>
+                        <td>{meta_data["serotype"] ? meta_data["serotype"] : "-"}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Segment</b></td>
+                        <td>{meta_data["segment"] ? meta_data["segment"] : '-'}</td>
                     </tr>
                     <tr>
                         <td><b>NCBI Entry Creation Date</b></td>
@@ -30,6 +34,7 @@ const SequenceDetails = ({ meta_data, alignment }) => {
                         <td><b>NCBI Last Update Date</b></td>
                         <td><Moment format="DD-MMM-YYYY">{meta_data.update_date}</Moment></td>
                     </tr>
+                    
                     <tr>
                         <td><b>Sequence Length</b></td>
                         <td>{meta_data["real_length"] ? meta_data["real_length"] : '-'}</td>

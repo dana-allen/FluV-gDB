@@ -50,9 +50,67 @@ const IsolatesTable = ( { data } ) => {
 
                             <td>{sequence.country || "-"}</td>
                             <td><em>{sequence.host || "-"}</em></td>
+                            <td></td>
+                            <td>
+                                <Link className="gdb-link" to={`/sequence/${sequence.seg_1}`}>
+                                    {sequence.seg_1}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link className="gdb-link" to={`/sequence/${sequence.seg_2}`}>
+                                    {sequence.seg_2}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link className="gdb-link" to={`/sequence/${sequence.seg_3}`}>
+                                    {sequence.seg_3}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link className="gdb-link" to={`/sequence/${sequence.seg_4}`}>
+                                    {sequence.seg_4}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link className="gdb-link" to={`/sequence/${sequence.seg_5}`}>
+                                    {sequence.seg_5}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link className="gdb-link" to={`/sequence/${sequence.seg_6}`}>
+                                    {sequence.seg_6}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link className="gdb-link" to={`/sequence/${sequence.seg_7}`}>
+                                    {sequence.seg_7}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link className="gdb-link" to={`/sequence/${sequence.seg_8}`}>
+                                    {sequence.seg_8}
+                                </Link>
+                            </td>
+                            
+                            
+                            </tr>
+                        ))}
+                    </tbody>
+                    {/* <tbody>
+                        {currentItems.map((sequence, i) => (
+                            <tr key={i} id={i}>
+                            <td>
+                                <b>
+                                <Link className="gdb-link" to={`/isolate/${encodeURIComponent(sequence.isolate)}`} >
+                                    {sequence.isolate}
+                                </Link>
+                                </b>
+                            </td>
+
+                            <td>{sequence.country || "-"}</td>
+                            <td><em>{sequence.host || "-"}</em></td>
                             <td>{sequence.collection_date}</td>
                             
-                            {/* 👇 Loop through number of segments and render accession cells */}
                             {Array.from({ length: Number(process.env.REACT_APP_NUMBER_OF_SEGMENTS) }, (_, idx) => {
                                 const segmentNumber = idx + 1;
                                 const accession = sequence.segments?.[segmentNumber]; // safe optional chaining
@@ -71,7 +129,7 @@ const IsolatesTable = ( { data } ) => {
                             })}
                             </tr>
                         ))}
-                    </tbody>
+                    </tbody> */}
 
                 </table>
             }
