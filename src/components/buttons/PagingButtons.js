@@ -10,18 +10,22 @@ const PagingButtons = ({ data, onPageChange}) => {
     const [startRecord, setStartRecord] = useState(0);
 
     useEffect(() => {
-        // Calculate the current items based on pagination state
         const indexOfLastItem = currentPage * itemsPerPage;
         const indexOfFirstItem = indexOfLastItem - itemsPerPage;
         const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-        // const startRecord = indexOfFirstItem + 1;
+        const start = indexOfFirstItem + 1;
         const endRecord = Math.min(indexOfLastItem, data.length);
-        setStartRecord(indexOfFirstItem + 1)
-        
 
-        // Pass the current items back to the parent component
-        onPageChange([currentItems, startRecord, endRecord]);
-    }, [currentPage, itemsPerPage, startRecord, data]);
+        // update state only if value actually changed
+        if (start !== startRecord) setStartRecord(start);
+
+        // only trigger if currentItems length > 0 (or add other guards)
+        if (currentItems.length > 0) {
+            onPageChange([currentItems, start, endRecord]);
+        }
+        onPageChange([currentItems, start, endRecord]);
+    }, [currentPage, itemsPerPage]);
+    console.log(currentPage)
 
     const handlePageIncrease = () => {setCurrentPage(prev => prev + 1);};
     const handlePageDecrease = () => {setCurrentPage(prev => prev - 1);};
@@ -48,7 +52,8 @@ const PagingButtons = ({ data, onPageChange}) => {
             <Button size="sm" className="paging-buttons" disabled={currentPage === 1} onClick={firstPage}> First</Button> {''}
             <div className="btn-group">
                 <Button size="sm" className="paging-buttons" disabled={currentPage === 1 | pageNumbers.length === 0} onClick={handlePageDecrease}> Previous </Button> {''}
-                <Button size="sm" className="paging-buttons" disabled={currentPage === pageNumbers.length | pageNumbers.length === 0} onClick={handlePageIncrease}> Next </Button> {''}
+                {/* <Button size="sm" className="paging-buttons" disabled={currentPage === pageNumbers.length | pageNumbers.length === 0} onClick={handlePageIncrease}> Next </Button> {''} */}
+                <Button size="sm" className="paging-buttons" onClick={handlePageIncrease}> Next </Button> {''}
             </div> {''}
             <Button size="sm" className="paging-buttons" disabled={currentPage === pageNumbers.length | pageNumbers.length === 0} onClick={lastPage}> Last </Button> {''}
             <Button size="sm" className="paging-buttons dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" >

@@ -3,8 +3,9 @@ import { Tooltip as ReactTooltip } from "react-tooltip"
 import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { toPng } from 'html-to-image';
-import GlobalMap from "./GlobalMap"
-import { useApiEndpoint, useFilterParams, useDownload } from "../../../hooks"
+import Map from "./Map"
+import { useFilterParams, useDownload, useMap } from "../../../hooks"
+import { useLoadingWheelHandler, useErrorHandler  } from "../../../contexts"
 import SequencesFilter from "../../../components/filters/SequencesFilter"
 import CladeTree from '../../../components/trees/CladeTree';
 
@@ -16,10 +17,16 @@ const GlobalOverview = ({ filters = null }) => {
   const [content, setContent] = useState("")
   const [country, setCountry] = useState("")
 
-  // API call (re-runs automatically when `params` changes)
-  const url = "/api/statistics/get_global_distribution_of_sequences/"
-  const { endpointData: data, isPending, endpointError } = useApiEndpoint(url, params)
+  // Contexts
+  const { triggerLoadingWheel } = useLoadingWheelHandler();
+  const { triggerError } = useErrorHandler();
+
   const { downloadFile } = useDownload();
+
+  const {countryData, maxCount, minCount, loading, error} = useMap()
+
+  triggerLoadingWheel(loading);
+  triggerError(error);
 
   // When filters are applied, just update params -> triggers hook
   const handleFiltersChange = useCallback((newFilters) => {
@@ -41,41 +48,44 @@ const GlobalOverview = ({ filters = null }) => {
   return (
     <div className="container">
       <h2>Global Sequences Overview</h2>
-
-      <div className="row">
-        <div className='col-9'>
-          <div className='tree-wrapper'>
-            <div ref={mapRef}>
-              <GlobalMap
-                data={data || []}
-                setTooltipContent={setContent}
-                countryClicked={setCountry}
-              />
+      {!loading &&
+        <div className="row">
+          <div className='col-9'>
+            <div className='tree-wrapper'>
+              <div ref={mapRef}>
+                        <Map 
+              setTooltipContent={setContent} 
+              countryCounts={countryData} 
+              maxCount={maxCount} 
+              minCount={minCount} 
+              countryClicked={setCountry}>
+          </Map>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className='col-3'>
-          <div><CladeTree onCladeSelect={handleFiltersChange}/></div>
-          <div className="col right-align" >
-            <Button className="btn-main-filled " style={{"margin-right": '2px'}} onClick={() => setShowFilter(true)}> Filters </Button>
-            <Button className='btn-main-filled float-right' onClick={() => downloadMapAsPNG(mapRef)}>Download Map</Button>
+          <div className='col-3'>
+            {/* <div><CladeTree onCladeSelect={handleFiltersChange}/></div> */}
+            <div className="col right-align" >
+              <Button className="btn-main-filled " style={{"margin-right": '2px'}} onClick={() => setShowFilter(true)}> Filters </Button>
+              <Button className='btn-main-filled float-right' onClick={() => downloadMapAsPNG(mapRef)}>Download Map</Button>
+            </div>
+
+            {country && 
+              <div style={{ marginTop:'5px'}}>
+                <h3>{country}</h3>
+                <p>filler on stats about the sequences</p>
+                <Link to="/sequences" state={{ filters: { ...params, country } }}><Button className="btn-main-filled " size='sm'> Explore sequences </Button></Link>
+                {/* <p> */}
+                  {/* Explore sequences for:{" "} */}
+                  {/* <Link className="custom-link" to="/sequences" state={{ filters: { ...params, country } }} > {country} </Link> */}
+                  
+                {/* </p> */}
+              </div> 
+            }
           </div>
-
-          {country && 
-            <div style={{ marginTop:'5px'}}>
-              <h3>{country}</h3>
-              <p>filler on stats about the sequences</p>
-              <Link to="/sequences" state={{ filters: { ...params, country } }}><Button className="btn-main-filled " size='sm'> Explore sequences </Button></Link>
-              {/* <p> */}
-                {/* Explore sequences for:{" "} */}
-                {/* <Link className="custom-link" to="/sequences" state={{ filters: { ...params, country } }} > {country} </Link> */}
-                
-              {/* </p> */}
-            </div> 
-          }
         </div>
-      </div>
+      }
       <ReactTooltip id="map-tooltip">{content}</ReactTooltip>
       <SequencesFilter
         show={showFilter}

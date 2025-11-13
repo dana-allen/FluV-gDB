@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // Custom Components
 import PagingButtons from '../../../components/buttons/PagingButtons';
 
-const IsolatesTable = ( { data=null } ) => {
+const IsolatesTable = ( { data } ) => {
 
     const [currentItems, setCurrentItems] = useState([]);
     const [startRecord, setStartRecord] = useState('')

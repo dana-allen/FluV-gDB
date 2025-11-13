@@ -4,8 +4,7 @@ import { faLink} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 
-// Custom Components
-import PagingButtons from '../../../components/buttons/PagingButtons';
+
 
 const SequencesTable = ( { data=null, type=null } ) => {
 
@@ -21,8 +20,7 @@ const SequencesTable = ( { data=null, type=null } ) => {
 
     return (
         <div>
-            <PagingButtons data={data} onPageChange={handlePageChange}> </PagingButtons> 
-            <a> Sequences {startRecord} to {endRecord} of {data.length}</a>
+            
             {data &&  
 
                 <table className="table table-striped table-bordered table-font">
@@ -42,7 +40,7 @@ const SequencesTable = ( { data=null, type=null } ) => {
                     </thead>
                     <tbody>
                         
-                        {currentItems.map((sequence, i) => (
+                        {data.map((sequence, i) => (
                             <tr key={i} id={i}>
 
                                 <td><b><Link className='gdb-link' to={type=='sequence' ? `/sequence/${sequence.primary_accession}`:`/reference/${sequence.primary_accession}` }> {sequence.primary_accession} </Link> </b></td>

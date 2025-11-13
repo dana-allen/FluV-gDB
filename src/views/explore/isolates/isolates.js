@@ -15,6 +15,7 @@ import SequencesFilter from '../../../components/filters/SequencesFilter';
 // Style imports
 // import '../../../assets/styles/sequences.css';
 
+import { useGetIsolates } from '../../../hooks';
 
 const Isolates = () => {
     const { downloadFile } = useDownload();
@@ -26,20 +27,16 @@ const Isolates = () => {
     const { triggerError } = useErrorHandler();
     const { triggerLoadingWheel } = useLoadingWheelHandler();
 
-    
-    const url = "/api/sequences/strains/";
-    const { endpointData, isPending, endpointError } = useApiEndpoint(url, params);
-    
-    useEffect(() => {
-        triggerLoadingWheel(isPending)
-        // if (endpointError) triggerError(endpointError)
-        if (endpointData) setData(endpointData);
-    }, [endpointError, endpointData, isPending]);
+    const { data: isolates, loading, error } = useGetIsolates();
 
-    const handleFiltersChange = useCallback((data) => {
-        setParams(data)
-        setShowFilter(false);
-    }, []);
+
+    triggerLoadingWheel(loading);
+    triggerError(error)
+
+    // const handleFiltersChange = useCallback((data) => {
+    //     setParams(data)
+    //     setShowFilter(false);
+    // }, []);
 
     return (
         <div className="container">
@@ -61,10 +58,14 @@ const Isolates = () => {
                     </div>
                 </ButtonGroup>
             </div> 
-            <div className='padding-table'>
-                <IsolatesTable data={data} type={'sequence'} />
-                {/* <SequencesFilter show={showFilter} onFilterSelect={handleFiltersChange} onClose={() => setShowFilter(false)}/> */}
-            </div>
+
+            {!loading && 
+            
+                <div className='padding-table'>
+                    <IsolatesTable data={isolates} type={'sequence'} />
+                    {/* <SequencesFilter show={showFilter} onFilterSelect={handleFiltersChange} onClose={() => setShowFilter(false)}/> */}
+                </div>
+            }
 
        </div>
        

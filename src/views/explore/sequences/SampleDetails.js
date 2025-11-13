@@ -1,10 +1,7 @@
-import { formatMetaDataRegions } from '../../../assets/javascript/formatHelper'
+import { Link } from 'react-router-dom';
 
-const SampleDetails = ({ meta_data }) => {
+const SampleDetails = ({ meta_data, regions }) => {
     
-    const regions = meta_data ? (meta_data["region"] ? formatMetaDataRegions(meta_data["region"]) : null) : null
-    console.log("MEPREPRE", meta_data)
-
     return (
         <div >
             <h4 className="title-sub">Sample Details</h4>
@@ -12,7 +9,9 @@ const SampleDetails = ({ meta_data }) => {
                 <tbody>
                     <tr>
                         <td><b>Isolate ID</b></td>
-                        <td>{meta_data.isolate ? `${meta_data.isolate}`:"-"}</td>
+                        <td>{meta_data.isolate ?<Link className="gdb-link" to={`/isolate/${encodeURIComponent(meta_data.isolate )}`} >
+                                    {meta_data.isolate }
+                                </Link> : "-"}</td>
                     </tr>
                     <tr>
                         <td><b>Isolation Source</b></td>

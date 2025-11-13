@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo } from 'react';
+import { useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
@@ -11,10 +11,9 @@ import GenomeViewer from '../../../components/genomeViewer/GenomeViewer'
 
 // Helpers
 import { downloadPng } from "../../../utils/downloadHelper";
-import { buildGenomeViewerResults } from '../../../assets/javascript/sequenceViewerHelper';
 
 // Hooks and Contexts
-import { useApiEndpoint, useDownload } from '../../../hooks';
+import { useDownload, useSequence } from '../../../hooks';
 import { useLoadingWheelHandler, useErrorHandler  } from "../../../contexts"
 
 // Importing stylesheets
@@ -25,30 +24,18 @@ const Sequence = () => {
     const { id } = useParams();
     const viewerRef = useRef(null);
     const { downloadFile } = useDownload();
+    
     // Contexts
     const { triggerLoadingWheel } = useLoadingWheelHandler();
     const { triggerError } = useErrorHandler();
 
-    const url = `/api/sequence/metadata/${id}`;
-    const { endpointData, isPending, endpointError } = useApiEndpoint(url);
-
-    const {
-        meta_data,
-        alignment,
-        alignment: { insertions } = {}
-    } = endpointData || {};
+    // Hooks
+    const { meta_data, alignment, sequence, genomeViewerData, regions, loading, error } = useSequence(id);
+    triggerLoadingWheel(loading);
+    triggerError(error);
 
     const pubmedId = meta_data?.pubmed_id;
-
-    const genomeViewerData = useMemo(() => {
-        if (!alignment) return [];
-        return [buildGenomeViewerResults(endpointData)];
-    }, [alignment, endpointData]);
-
-    useEffect(() => {
-        triggerLoadingWheel(isPending)
-        if(endpointError) triggerError(endpointError);
-    }, [endpointData, endpointError, isPending]);
+    const insertions = alignment?.insertions;
 
     return (
         <div className='container'>
@@ -65,7 +52,7 @@ const Sequence = () => {
                                             alignment={alignment ? alignment : null} />
                         </div>
                         <div className="col-md-6">
-                            <SampleDetails meta_data={meta_data} />
+                            <SampleDetails meta_data={meta_data} regions={regions} />
                         </div>
                     </div>
                     <div className='row'>
@@ -75,7 +62,7 @@ const Sequence = () => {
                         <div>
                             <Button size='sm' 
                                     className='btn-main-filled' 
-                                    onClick={() => downloadFile('>'+id+'\n'+endpointData["sequence"].toUpperCase(), id+".fasta", "fasta")}>
+                                    onClick={() => downloadFile('>'+id+'\n'+sequence.toUpperCase(), id+".fasta", "fasta")}>
                                 Download Sequence
                             </Button>
                         </div>
@@ -96,10 +83,12 @@ const Sequence = () => {
                                 Download PNG
                                 </Button>
                             </div>
-                            {alignment && <div ref={viewerRef}>
-                                {genomeViewerData && <GenomeViewer data={genomeViewerData} refId={alignment.alignment_name}/>}
-                            </div>
-}
+                            
+                            {alignment && 
+                                <div ref={viewerRef}>
+                                    {genomeViewerData && <GenomeViewer data={genomeViewerData} refId={alignment.alignment_name}/>}
+                                </div> 
+                            }
                         </div>
                     }
                     <br></br>

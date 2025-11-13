@@ -5,7 +5,7 @@ import { scaleLinear } from "d3-scale";
 const geoUrl = "/land-50m.json"
 
 const Map = ({ setTooltipContent, countryCounts, maxCount, minCount, countryClicked}) => {
-    console.log(countryCounts)
+
     const displaySequenceCount = (geography) => {
         if (countryCounts[geography.id] != undefined) {
             return countryCounts[geography.id].count
@@ -16,6 +16,7 @@ const Map = ({ setTooltipContent, countryCounts, maxCount, minCount, countryClic
     const colorScale = scaleLinear()
         .domain([minCount, maxCount])
         .range(["#e9f4f7", "#4CAF50"])
+        
     const [selectedCountry, setSelectedCountry] = useState()
     const handleClick = (e) => {
         countryClicked(e.properties.name)
