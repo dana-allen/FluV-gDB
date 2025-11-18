@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button, ButtonGroup, FormText } from 'react-bootstrap';
 
 // gDB-core hooks import: This creates an API request to grab the data from the server
 import { useApiEndpoint, useFilterParams, useDownload, useSequences, useFetch } from '../../../hooks'
@@ -22,16 +22,16 @@ import '../../../assets/styles/sequences.css';
 const Sequences = () => {
     const { downloadFile } = useDownload();
     const location = useLocation();
-    const filters = location.state?.filters ?? {}
+    // const filters = location.state?.filters ?? {}
     // const [params, setParams] = useFilterParams(filters);
     // const [data, setData] = useState([])
     const [showFilter, setShowFilter] = useState(false);
     const { triggerError } = useErrorHandler();
     const { triggerLoadingWheel } = useLoadingWheelHandler();
-
+  const [filters, setFilters] = useState({})
 
     const { data } = useFetch(`${process.env.REACT_APP_BACKEND_URL}${'/api/statistics/get_statistics/'}`);
-    const [params, setParams] = useState({"next_cursor":0, "items_per_page":10});
+    const [params, setParams] = useState({"items_per_page":10});
 
     const { sequences, nextCursor, prevCursor, loading, error } = useSequences(params);
     triggerLoadingWheel(loading);
@@ -41,33 +41,40 @@ const Sequences = () => {
     const [endNum, setEndNum] = useState(10)
 
     const handleFirstPage = () => {
-      setParams({"next_cursor":0, "items_per_page":itemsPerPage}); // trigger next page
+      setParams({"items_per_page":itemsPerPage, ...filters}); // trigger next page
       setStartNum(1)
       setEndNum(itemsPerPage)
     };
     const handleNextPage = () => {
-      setParams({"next_cursor":nextCursor, "items_per_page":itemsPerPage}); // trigger next page
+      setParams({"next_cursor":nextCursor, "items_per_page":itemsPerPage, ...filters}); // trigger next page
       setStartNum(startNum + itemsPerPage)
       setEndNum(endNum + itemsPerPage)
     };
 
     const handlePreviousPage = () => {
-      setParams({"prev_cursor":prevCursor, "items_per_page":itemsPerPage}); // trigger next page
+      setParams({"prev_cursor":prevCursor, "items_per_page":itemsPerPage, ...filters}); // trigger next page
       setStartNum(startNum - itemsPerPage)
       setEndNum(endNum - itemsPerPage)
     };
 
     const handleLastPage = () => {
-      setParams({"prev_cursor":0, "items_per_page":itemsPerPage}); // trigger next page
+      setParams({"prev_cursor":0, "items_per_page":itemsPerPage, ...filters}); // trigger next page
       setStartNum(data.sequences_count - itemsPerPage)
       setEndNum(data.sequences_count)
     };
     const [itemsPerPage, setItemsPerPage] = useState(10);
     
     const onItemsPerPageChange = (newItemsPerPage) => {
-        setItemsPerPage(newItemsPerPage);
-        setParams({"items_per_page":newItemsPerPage})
+      setItemsPerPage(newItemsPerPage);
+      setParams({"items_per_page":newItemsPerPage, ...filters})
     };
+
+    const handleFiltersChange = useCallback((data) => {
+      console.log(data)
+      setFilters(data)
+        setParams((prev) => ({...prev, ...data}))
+        setShowFilter(false);
+    }, []);
 
     return (
       <div className="container">
@@ -78,11 +85,6 @@ const Sequences = () => {
         </div>
         {sequences && 
         <div className='padding-table'>
-
-
-
-
-
           <div>
             <Button size="sm" className="paging-buttons" disabled={params["next_cursor"] === 0} onClick={handleFirstPage}> First</Button> {''}
             <div className="btn-group">
@@ -98,11 +100,12 @@ const Sequences = () => {
                 <a onClick={() => onItemsPerPageChange(25)} className="dropdown-item" >25</a>
                 <a onClick={() => onItemsPerPageChange(50)} className="dropdown-item" >50</a>
             </div>
+            <Button className="paging-buttons" onClick={() => setShowFilter(true)}> Filters </Button>
         </div>
 
             <a> Sequences {startNum.toLocaleString()} to {endNum.toLocaleString()} of {data ? data.sequences_count.toLocaleString() : ''}</a>
             <SequencesTable data={sequences} type={'sequence'} />
-            {/* <SequencesFilter show={showFilter} onFilterSelect={handleFiltersChange} onClose={() => setShowFilter(false)}/> */}
+            <SequencesFilter show={showFilter} onFilterSelect={handleFiltersChange} onClose={() => setShowFilter(false)} prevFilters={filters}/>
         </div>
         }
 

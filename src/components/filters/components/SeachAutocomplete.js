@@ -12,11 +12,11 @@ const debounce = (func, delay) => {
   };
 };
 
-const SearchAutocomplete = ({label, url, idKey, handleId}) => {
+const SearchAutocomplete = ({label, url, idKey, handleId, exampleOptions}) => {
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  
 
   // Memoize the debounced fetch function
   const fetchOptions = useMemo(
@@ -26,7 +26,7 @@ const SearchAutocomplete = ({label, url, idKey, handleId}) => {
         if (query.length > 2){
         setLoading(true);
         try {
-          const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}${url}${query}`);
+          const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}${url}${query}`, { headers: { 'database': process.env.REACT_APP_DATABASE } });
           const data = await res.json();
           setOptions(data || []); // adjust based on your API shape
         } catch (err) {
@@ -65,6 +65,7 @@ const SearchAutocomplete = ({label, url, idKey, handleId}) => {
           <Autocomplete
             multiple 
             size="small"
+            // defaultValue={exampleOptions && exampleOptions[0]}
             options={options}
             getOptionLabel={(option) => option[idKey] || ''}
             loading={loading}

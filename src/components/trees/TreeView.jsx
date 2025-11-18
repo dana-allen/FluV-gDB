@@ -292,6 +292,7 @@ TreeView.defaultProps = {
   showBorder: false,
   showTags: false,
   expanded: true,
+  // textDecoration:'underline',
 
   nodes: []
 };

@@ -27,7 +27,8 @@ const SequencesTable = ( { data=null, type=null } ) => {
                     <thead >
                         <tr>
                             <th>NCBI Nucleotide ID</th>
-                            <th>{process.env.REACT_APP_VIRUS_LEVEL}</th>
+                            <th>Serotype</th>
+                            <th>Segment</th>
                             <th>NCBI Entry Creation Date</th>
                             <th>NCBI Last Update Date</th>
                             <th>Sequence Length</th>
@@ -44,7 +45,8 @@ const SequencesTable = ( { data=null, type=null } ) => {
                             <tr key={i} id={i}>
 
                                 <td><b><Link className='gdb-link' to={type=='sequence' ? `/sequence/${sequence.primary_accession}`:`/reference/${sequence.primary_accession}` }> {sequence.primary_accession} </Link> </b></td>
-                                <td>{sequence["major_clade"]} {sequence["minor_clade"]}</td>
+                                <td>{sequence["serotype"]}</td>
+                                <td>{sequence["segment"]}</td>
                                 <td><Moment format="DD-MMM-YYYY">{sequence.create_date}</Moment></td>
                                 <td><Moment format="DD-MMM-YYYY">{sequence.update_date}</Moment></td>
                                 <td>{sequence.real_length}</td>

@@ -30,6 +30,7 @@ const NavBar = () => {
               <a className="dropdown-item" href="/advanced_search">Advanced Search</a>
             </div>
           </li>
+          <li className="nav-item"> <a className="nav-link custom-toggle" href="/adaptive_mutations"> Adaptive Mutations </a></li>
 
 
           <li className="nav-item dropdown">

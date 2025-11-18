@@ -19,13 +19,13 @@ const IsolatesTable = ( { data } ) => {
     return (
         <div>
             <PagingButtons data={data} onPageChange={handlePageChange}> </PagingButtons> 
-            <a> Strains {startRecord} to {endRecord} of {data.length}</a>
+            <a> Isolates {startRecord} to {endRecord} of {data.length}</a>
             {data &&  
 
                 <table className="table table-striped table-bordered table-font">
                     <thead >
                         <tr>
-                            <th rowSpan={2}>Strain</th>
+                            <th rowSpan={2}>Isolate</th>
                             <th rowSpan={2}>Country</th>
                             <th rowSpan={2}>Host</th>
                             <th rowSpan={2}>Collection Date</th>

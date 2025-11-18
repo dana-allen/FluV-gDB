@@ -50,6 +50,7 @@ import Phylogeny from './views/explore/phylogeny';
 
 import Isolates from './views/explore/isolates/isolates';
 import Isolate from './views/explore/isolates/isolate';
+import AdaptiveMutations from './views/adaptive_mutations/adaptive_mutations';
 
 function App() {
   return (
@@ -97,6 +98,8 @@ function App() {
 
                 <Route path="/isolates"            element={<Isolates />} />
                 <Route exact path="/isolate/:id"   element={<Isolate />} />
+
+                <Route path="/adaptive_mutations"  element={<AdaptiveMutations />} />
 
               </Routes>
             </BrowserRouter>

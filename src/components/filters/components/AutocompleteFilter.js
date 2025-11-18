@@ -6,7 +6,7 @@ import useApiEndpoint from '../../../hooks/useApiEndpoint'
 import '../../../assets/styles/filters.css'
 
 const AutoCompleteFilter = ({label, url, idKey, handleId, exampleOptions}) => {
-
+  console.log(exampleOptions)
   const [ids, setIds] = useState([]) 
 
   const handleChange = (event, value) => {

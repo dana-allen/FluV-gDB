@@ -24,8 +24,7 @@ const PagingButtons = ({ data, onPageChange}) => {
             onPageChange([currentItems, start, endRecord]);
         }
         onPageChange([currentItems, start, endRecord]);
-    }, [currentPage, itemsPerPage]);
-    console.log(currentPage)
+    }, [currentPage, itemsPerPage, data]);
 
     const handlePageIncrease = () => {setCurrentPage(prev => prev + 1);};
     const handlePageDecrease = () => {setCurrentPage(prev => prev - 1);};

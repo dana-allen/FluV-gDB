@@ -5,8 +5,9 @@ import SearchAutocomplete from './components/SeachAutocomplete';
 import RadioButtonFilter from './components/RadioButtonFilter';
 
 import '../../assets/styles/filters.css'
-const SequencesFilter = ({ show, onFilterSelect, onClose }) => {
 
+const SequencesFilter = ({ show, onFilterSelect, onClose, prevFilters }) => {
+  console.log(prevFilters)
   var filters = {}
 
   const handleIsolateId =         (value) => { value != '' ? filters["isolate"] =             value : delete filters["isolate"] } 
@@ -60,7 +61,7 @@ const SequencesFilter = ({ show, onFilterSelect, onClose }) => {
 
           <RangeFilter label={'NCBI Entry Creation'} handleLower={handleCreationLowerChange} handleUpper={handleCreationUpperChange} /> */}
 
-          <SearchAutocomplete label={'Primary Accession'} url={'/api/filters/search_primary_accession_ids/'} idKey={'primary_accession'} handleId={handleNucleotideId}/>
+          <SearchAutocomplete label={'Primary Accession'} url={'/api/filters/search_primary_accession_ids/'} idKey={'primary_accession'} handleId={handleNucleotideId} exampleOptions={prevFilters ? prevFilters['primary_accession'] : null}/>
           <SearchAutocomplete label={'Isolate ID'} url={'/api/filters/search_isolate_ids/'} idKey={'isolate'} handleId={handleIsolateId}/>
           <SearchAutocomplete label={'Pubmed ID'} url={'/api/filters/search_pubmed_ids/'} idKey={'pubmed_id'} handleId={handlePubmedId}/>
           <SearchAutocomplete label={'Host'} url={'/api/filters/search_hosts/'} idKey={'host'} handleId={handleHostSpecies}/>
