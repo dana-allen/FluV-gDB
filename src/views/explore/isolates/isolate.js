@@ -8,7 +8,7 @@ import { useLoadingWheelHandler, useErrorHandler  } from "../../../contexts"
 
 // Importing stylesheets
 import '../../../assets/styles/sequence.css'
-
+import GenomeViewer from '../../../components/genomeViewer/GenomeViewer'
 
 const Isolate = () => {
 
@@ -22,7 +22,18 @@ const Isolate = () => {
     // Hooks
     const { data: isolate, pubmedId, segments, loading, error } = useGetIsolate(decodedId);
     triggerLoadingWheel(loading);
-    triggerError(error)
+    triggerError(error);
+
+    const segments2 = [
+                    {"segment":"PB1", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}, {"name": "Matrix Protein", "start": 90, "end":120}], "aligned_seq": [{"query":"MK592506", "seq": 'AGCTGAGGA'}], "seq":"ACCTGAGTA"}},
+                    {"segment":"PB2", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"HA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"M", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"PA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"NP", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"NA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"NS", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}}
+                ]
 
 
     return (
@@ -31,6 +42,14 @@ const Isolate = () => {
             <div className="row col-md-6">
                 <h2> Isolate {decodedId} </h2>
             </div>
+
+{/* .main-viewer {
+    width: 100%;
+    margin: 20px 0;
+} */}
+            
+            
+            
 
             { isolate && 
                 <div>
@@ -86,7 +105,24 @@ const Isolate = () => {
                     }
                 </div>
             }
-            { segments &&
+
+            <div style = {{'width':'100%'}} >
+                <div style = {{'display': 'flex', 'overflow-x': 'scroll', alignItems: "stretch"}}>
+                    {segments2.map((segment, i) => (
+                        <div style={{ minWidth: "500px", marginLeft: "1rem", paddingLeft: "1rem", borderRight: i !== segments2.length - 1 ? "2px solid #ccc" : "none", }}>
+                            <h6>{segment.segment}</h6>
+                            {/* <GenomeViewer data={[segment.data]} refId={segment.data.primary_accession}/> */}
+                            <GenomeViewer data={[segment.data]}/>
+                        </div>          
+                    ))}
+
+                </div>
+
+            </div>
+
+
+
+            {/* { segments &&
                 <table className="table table-striped table-bordered table-font">
                     <thead >
                         <tr>
@@ -109,7 +145,7 @@ const Isolate = () => {
                         ))}
                     </tbody>
                 </table>
-            }
+            } */}
 
             <br></br>
 

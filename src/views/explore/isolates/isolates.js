@@ -15,6 +15,7 @@ import SequencesFilter from '../../../components/filters/SequencesFilter';
 // Style imports
 // import '../../../assets/styles/sequences.css';
 
+
 import { useGetIsolates } from '../../../hooks';
 
 const Isolates = () => {
@@ -28,6 +29,7 @@ const Isolates = () => {
     const { triggerLoadingWheel } = useLoadingWheelHandler();
 
     const { data: isolates, loading, error } = useGetIsolates();
+
 
 
     triggerLoadingWheel(loading);

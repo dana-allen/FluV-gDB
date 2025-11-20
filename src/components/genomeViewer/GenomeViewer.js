@@ -30,7 +30,7 @@ const GenomeViewer = ({ data, refId=null }) => {
     }
     mismatches = [...new Set(mismatches)];
 
-    
+    console.log(data[0])
     return (
         <div className='genome-container'>
             {refId && 
