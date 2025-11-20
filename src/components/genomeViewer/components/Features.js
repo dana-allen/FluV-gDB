@@ -33,7 +33,8 @@ export const FeatureBtn = ({i, feature, min, range, onClick}) => {
 export const Features = ({ features, min, range, setSelectedFeature }) => {
   return (
     <div className='row-style'>
-      <div className='label-style'></div>
+      {/* <div className='label-style'></div> */}
+      {/* <div className='line-area-style features'> */}
       <div className='line-area-style features'>
         {features.map((feature, i) => {
           if (feature.name === 'full') return null; 

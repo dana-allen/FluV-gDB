@@ -25,7 +25,7 @@ const Isolate = () => {
     triggerError(error);
 
     const segments2 = [
-                    {"segment":"PB1", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}, {"name": "Matrix Protein", "start": 90, "end":120}], "aligned_seq": [{"query":"MK592506", "seq": 'AGCTGAGGA'}], "seq":"ACCTGAGTA"}},
+                    {"segment":"PB1", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":30}, {"name": "Matrix Protein", "start": 90, "end":120}], "aligned_seq": [{"query":"MK592506", "seq": 'AGCTGAGGA'}], "seq":"ACCTGAGTA"}},
                     {"segment":"PB2", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
                     {"segment":"HA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
                     {"segment":"M", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
@@ -109,7 +109,17 @@ const Isolate = () => {
             <div style = {{'width':'100%'}} >
                 <div style = {{'display': 'flex', 'overflow-x': 'scroll', alignItems: "stretch"}}>
                     {segments2.map((segment, i) => (
-                        <div style={{ minWidth: "500px", marginLeft: "1rem", paddingLeft: "1rem", borderRight: i !== segments2.length - 1 ? "2px solid #ccc" : "none", }}>
+                        <div style={{ 
+                                        minWidth: "500px", 
+                                        marginLeft: "1rem", 
+                                        paddingLeft: "1rem", 
+                                        borderRight: i !== segments2.length - 1 ? "2px solid #ccc" : "none", 
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        textAlign: "center",
+                                    }}>
                             <h6>{segment.segment}</h6>
                             {/* <GenomeViewer data={[segment.data]} refId={segment.data.primary_accession}/> */}
                             <GenomeViewer data={[segment.data]}/>
