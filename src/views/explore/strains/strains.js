@@ -7,7 +7,7 @@ import { useApiEndpoint, useFilterParams, useDownload } from '../../../hooks'
 import { useLoadingWheelHandler, useErrorHandler  } from "../../../contexts"
 
 // Custom Components
-import IsolatesTable from "./IsolatesTable"
+import StrainsTable from "./StrainsTable"
 import DownloadAlignment from "../../../components/buttons/DownloadAlignment"
 import SequencesFilter from '../../../components/filters/SequencesFilter';
 // import CladeTree from '../../../components/trees/CladeTree';
@@ -18,7 +18,7 @@ import SequencesFilter from '../../../components/filters/SequencesFilter';
 
 import { useGetIsolates } from '../../../hooks';
 
-const Isolates = () => {
+const Strains = () => {
     const { downloadFile } = useDownload();
     const location = useLocation();
     const filters = location.state?.filters ?? null;
@@ -42,7 +42,7 @@ const Isolates = () => {
 
     return (
         <div className="container">
-            <h2>Isolates</h2>
+            <h2>Strains</h2>
             <p>This dataset contains all {process.env.REACT_APP_VIRUS_NAME} virus sequences from NCBI nucleotide.</p>
             {/* <div className='col-3'>
                 <CladeTree onCladeSelect={handleFiltersChange}/>
@@ -64,7 +64,7 @@ const Isolates = () => {
             {!loading && 
             
                 <div className='padding-table'>
-                    <IsolatesTable data={isolates} type={'sequence'} />
+                    <StrainsTable data={isolates} type={'sequence'} />
                     {/* <SequencesFilter show={showFilter} onFilterSelect={handleFiltersChange} onClose={() => setShowFilter(false)}/> */}
                 </div>
             }
@@ -74,7 +74,7 @@ const Isolates = () => {
     );
 };
  
-export default Isolates;
+export default Strains;
 
 
 

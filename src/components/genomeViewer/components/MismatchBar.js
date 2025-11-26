@@ -40,17 +40,19 @@ const MismatchBar = ({ sequence, referenceSequence, alignedStart, alignedEnd, ra
 };
 
 
-const MismatchBarRow = ({ sequence, referenceSequence, min, max, range }) => {
+const MismatchBarRow = ({ sequence, referenceSequence, min, max, range, includeLabel=false }) => {
   const alignedStart = sequence.seq.search(/[A-Za-z]/);
   const alignedEnd = sequence.seq.length - sequence.seq.split('').reverse().join('').search(/[A-Za-z]/);
 
   return (
     <div className='row-style' style={{ marginTop: '5px' }}>
-      <div className='label-style'>
-        <Link className='custom-link' to={`/sequence/${sequence.query}`} style={{ margin: 0 }}>
-          {sequence.query}
-        </Link>
+      {includeLabel && 
+        <div className='label-style'>
+          <Link className='custom-link' to={`/sequence/${sequence.query}`} style={{ margin: 0 }}>
+            {sequence.query}
+          </Link>
       </div>
+      }
 
       <div className='line-area-style' style={{ height: '20px', display: 'flex', width: '100%' }}>
         <Gap widthPercent={((alignedStart - min) / range) * 100} />

@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
-
+import { useState } from 'react'
 // Hooks and Contexts
 import { useGetIsolate } from '../../../hooks';
 import { useLoadingWheelHandler, useErrorHandler  } from "../../../contexts"
@@ -9,7 +9,7 @@ import { useLoadingWheelHandler, useErrorHandler  } from "../../../contexts"
 // Importing stylesheets
 import '../../../assets/styles/sequence.css'
 import GenomeViewer from '../../../components/genomeViewer/GenomeViewer'
-
+import SequenceViewer from '../../../components/genomeViewer/SequenceViewer';
 const Isolate = () => {
 
     const { id } = useParams();
@@ -25,22 +25,27 @@ const Isolate = () => {
     triggerError(error);
 
     const segments2 = [
-                    {"segment":"PB1", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":30}, {"name": "Matrix Protein", "start": 90, "end":120}], "aligned_seq": [{"query":"MK592506", "seq": 'AGCTGAGGA'}], "seq":"ACCTGAGTA"}},
-                    {"segment":"PB2", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"HA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"M", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"PA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"NP", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"NA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"NS", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "aligned_seq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}}
+                    {"segment":"PB1", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 1, "end":7}, {"name": "Matrix Protein", "start": 90, "end":120}], "alignedSeq": [{"query":"MK592506", "seq": 'AGCTGAGGA'}], "seq":"ACCTGAGTA"}},
+                    {"segment":"PB2", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 2, "end":5}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"HA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"M", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"PA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"NP", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"NA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
+                    {"segment":"NS", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}}
                 ]
 
-
+    // const [showSequenceViewer, setShowSequenceViewer] = useState(false);
+    const [featureData, setFeatureData] = useState(null)
+    console.log(featureData)
+    // const handleFeatreBtn = (e) => {
+    //     setFeature(e)
+    // }
     return (
         <div className='container'>
 
             <div className="row col-md-6">
-                <h2> Isolate {decodedId} </h2>
+                <h2> Strain {decodedId} </h2>
             </div>
 
 {/* .main-viewer {
@@ -121,12 +126,22 @@ const Isolate = () => {
                                         textAlign: "center",
                                     }}>
                             <h6>{segment.segment}</h6>
-                            {/* <GenomeViewer data={[segment.data]} refId={segment.data.primary_accession}/> */}
-                            <GenomeViewer data={[segment.data]}/>
+                            <h6><Link className='gdb-link'><b>{segment.data.alignedSeq[0].query}</b></Link></h6>
+                            <GenomeViewer data={[segment.data]} refId={segment.data.primary_accession} setFeatureData={setFeatureData}/>
+                            {/* <GenomeViewer data={[segment.data]}/> */}
                         </div>          
                     ))}
+                
 
                 </div>
+                {featureData && 
+                
+                <SequenceViewer start={featureData.start} 
+                                        end={featureData.end} 
+                                        refSequence={featureData.refSequence} 
+                                        currentSequences={featureData.currentSequences} 
+                                        nucPositions={featureData.nucPositions} />
+                }
 
             </div>
 

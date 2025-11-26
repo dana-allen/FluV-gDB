@@ -11,7 +11,8 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg custom-nav" >
       
       <a className="navbar-brand custom-toggle" href="/" >
-        <ReactSVG src="/icon_sm.svg" width="30" height="30" className="d-inline-block align-top my-svg"/>
+        {/* <ReactSVG src="/icon_sm.svg" width="30" height="30" className="d-inline-block align-top my-svg"/> */}
+        <ReactSVG src="/flu_v3_v2_sm.svg" width="30" height="30" className="d-inline-block align-top my-svg"/>
         {process.env.REACT_APP_VIRUS_ABB}-{process.env.REACT_APP_WEB_RESOURCE}</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
           <span className="navbar-toggler-icon"></span>
@@ -24,7 +25,7 @@ const NavBar = () => {
             <div className="dropdown-menu">
               <a className="dropdown-item" href="/sequences">All Sequences</a>
               <a className="dropdown-item" href="/references">Reference Sequences</a>
-              <a className="dropdown-item" href="/isolates">Isolates</a>
+              <a className="dropdown-item" href="/strains">Strains</a>
               <a className="dropdown-item" href="/global_overview">Global Sequence Map</a>
               <a className="dropdown-item" href="/phylogeny">Phylogeny</a>
               <a className="dropdown-item" href="/advanced_search">Advanced Search</a>

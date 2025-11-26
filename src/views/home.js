@@ -16,7 +16,7 @@ const tabs = ["Explore", "Analysis", "About"];
 
 const exploreItems = [
   { title: "Sequences", description: "Browse metadata and alignments, arranged into major and minor clades.", icon: faSitemap, link:'/sequences' },
-  { title: "Isolates", description: "Explore Flu segments", icon: faViruses, link:'/isolates' },
+  { title: "Strains", description: "Explore the various strains of the Flu segments", icon: faViruses, link:'/strains' },
   { title: "Global Visualization", description: "Visualize the global distribution with an interactive map." , icon: faGlobe, link:'/global_overview'}
 ];
 
@@ -60,9 +60,56 @@ const Home = () => {
             <div>
                 <div className="row content banner">
                     <div className="col banner-container banner-gradient-spots">
-                        <ReactSVG className='banner-svg' src="/home_background.svg" style={{width:'100%'}}/> 
-                        <h1 className='banner-title'><b>{process.env.REACT_APP_VIRUS_ABB}-{process.env.REACT_APP_WEB_RESOURCE}</b></h1>
-                        <h4 className='banner-subtitle'><b>A <b>G</b>enome <b>D</b>ata<b>b</b>ase Resource for <b>Flu</b> <b>V</b>irus</b></h4>
+                        {/* <ReactSVG className='banner-svg' src="/home_background.svg" style={{width:'100%'}}/>  */}
+                        {/* <h1 className='banner-title'><b>{process.env.REACT_APP_VIRUS_ABB}-{process.env.REACT_APP_WEB_RESOURCE}</b></h1>
+                        <h4 className='banner-subtitle'><b>A <b>G</b>enome <b>D</b>ata<b>b</b>ase Resource for <b>Flu</b> <b>V</b>irus</b></h4> */}
+                    <div className='banner-title row' style={{ alignItems: "left" }}>
+                        <div className="col" style={{ textAlign: "right" }}>
+                            <img src="/flu_v3_v2.svg" style={{ width: "20%", height: "auto" }} />
+                            
+                        </div>
+
+                        <div className="col" style={{ textAlign: "left" }}>
+                            <h2><b>V</b>IRAL</h2>
+                            <h2><b>G</b>ENOME</h2>
+                            <h2><b>D</b>ATA<b>B</b>ASE</h2>
+                        </div>
+                    </div>
+
+                    {/* <div
+                            className="banner-title"
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "1.5rem",
+                                float:'center'
+                            }}
+                            >
+
+                            <img
+                                src="/flu_v3_v2.svg"
+                                style={{ width: "70px", height: "auto" }}
+                            />
+
+                            <h2 style={{ margin: 0 }}>
+                                <b>FLU</b>
+                            </h2>
+
+                            <div
+                                style={{
+                                width: "2px",
+                                height: "60px",
+                                background: "white"
+                                }}
+                            />
+
+                            <div style={{ display: "flex", flexDirection: "column", lineHeight: "1", textAlign:'left' }}>
+                                <h2 style={{ margin: 0 }}><b>V</b>IRAL</h2>
+                                <h2 style={{ margin: 0 }}><b>G</b>ENOME</h2>
+                                <h2 style={{ margin: 0 }}><b>D</b>ATA<b>B</b>ASE</h2>
+                            </div>
+                            </div> */}
+                    
                     </div>
                 </div>
             </div>

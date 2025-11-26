@@ -100,7 +100,7 @@ const SequenceViewer = ({ start, end, refSequence, currentSequences, nucPosition
   } else {
     blockToRender = [];
   }
-
+  console.log(nucPositions)
   return (
     <div>
       {nucPositions.length > 0 &&

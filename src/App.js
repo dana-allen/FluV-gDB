@@ -48,8 +48,8 @@ import ErrorMessage from './components/ErrorMessage';
 import Phylogeny from './views/explore/phylogeny';
 
 
-import Isolates from './views/explore/isolates/isolates';
-import Isolate from './views/explore/isolates/isolate';
+import Strains from './views/explore/strains/strains';
+import Strain from './views/explore/strains/strain';
 import AdaptiveMutations from './views/adaptive_mutations/adaptive_mutations';
 
 function App() {
@@ -96,8 +96,8 @@ function App() {
                 <Route path="/advanced_search"      element={<AdvancedSearch />} />
                 <Route path="/phylogeny"            element={<Phylogeny />} />
 
-                <Route path="/isolates"            element={<Isolates />} />
-                <Route exact path="/isolate/:id"   element={<Isolate />} />
+                <Route path="/strains"            element={<Strains />} />
+                <Route exact path="/strain/:id"   element={<Strain />} />
 
                 <Route path="/adaptive_mutations"  element={<AdaptiveMutations />} />
 

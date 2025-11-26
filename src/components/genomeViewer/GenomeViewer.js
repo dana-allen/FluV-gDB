@@ -7,7 +7,7 @@ import MismatchBarRow from './components/MismatchBar';
 import { getMismatches } from '../../assets/javascript/sequenceViewerHelper'
 import '../../assets/styles/genome_viewer.css'
 
-const GenomeViewer = ({ data, refId=null }) => {
+const GenomeViewer = ({ data, refId=null, setFeatureData }) => {
 
     const [selectedFeature, setSelectedFeature] = useState(null);
 
@@ -31,6 +31,17 @@ const GenomeViewer = ({ data, refId=null }) => {
     mismatches = [...new Set(mismatches)];
 
     console.log(data[0])
+
+    const onFeatureClick = (feature) => {
+        const data = {
+                        start: feature.start,
+                        end: feature.end,
+                        refSequence: referenceSequence,
+                        currentSequences: alignedSequences,
+                        nucPositions: mismatches
+                    }
+                    setFeatureData(data)
+    }
     return (
         <div className='genome-container'>
             {refId && 
@@ -47,7 +58,8 @@ const GenomeViewer = ({ data, refId=null }) => {
                 min={min}
                 range={range}
                 selectedFeature={selectedFeature}
-                setSelectedFeature={setSelectedFeature}
+                // setSelectedFeature={setSelectedFeature}
+                setSelectedFeature={onFeatureClick}
             />
 
 
@@ -63,7 +75,7 @@ const GenomeViewer = ({ data, refId=null }) => {
             ))}
 
 
-            {selectedFeature && (
+            {/* {selectedFeature && (
                 <div className='selected-feature'>
                     <h5 className='selected-feature-label'>{selectedFeature.name} ({selectedFeature.start} - {selectedFeature.end})</h5>
                     <SequenceViewer start={selectedFeature.start} 
@@ -72,7 +84,7 @@ const GenomeViewer = ({ data, refId=null }) => {
                                         currentSequences={alignedSequences} 
                                         nucPositions={alignedSequences.length > 0 && mismatches} />
                 </div>
-            )}
+            )} */}
         </div>
     );
 

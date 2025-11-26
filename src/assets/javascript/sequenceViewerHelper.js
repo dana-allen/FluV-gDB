@@ -108,6 +108,7 @@ export const getSequenceData = (start, end, referenceSequence, currentSequences,
 
   const currentSequencesRegions = currentSequences ? currentSequences.map(q => q.seq.slice(start, end)) : [];
   const refSequenceRegion = referenceSequence ? referenceSequence.slice(start, end) : '';
+  console.log(referenceSequence)
   const refCodonsArray = splitIntoCodons(refSequenceRegion);
   const currentCodonArrays = currentSequencesRegions.map(seq => splitIntoCodons(seq));
   const startIndex = start;
@@ -120,7 +121,7 @@ export const getSequenceData = (start, end, referenceSequence, currentSequences,
     if (!tracked_codons.includes(codonIndex)) {
       tracked_codons.push(codonIndex);
 
-      const refCodon = refCodonsArray[codonIndex];
+      const refCodon = refCodonsArray[codonIndex] || '';
       const refAA = codonTable[refCodon] || '-';
       const codonStart = startIndex + codonIndex * 3;
       const nuc_index = [codonStart + 1, codonStart + 2, codonStart + 3];

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // Custom Components
 import PagingButtons from '../../../components/buttons/PagingButtons';
 
-const IsolatesTable = ( { data } ) => {
+const StrainsTable = ( { data } ) => {
 
     const [currentItems, setCurrentItems] = useState([]);
     const [startRecord, setStartRecord] = useState('')
@@ -19,7 +19,7 @@ const IsolatesTable = ( { data } ) => {
     return (
         <div>
             <PagingButtons data={data} onPageChange={handlePageChange}> </PagingButtons> 
-            <a> Isolates {startRecord} to {endRecord} of {data.length}</a>
+            <a> Strains {startRecord} to {endRecord} of {data.length}</a>
             {data &&  
 
                 <table className="table table-striped table-bordered table-font">
@@ -42,7 +42,7 @@ const IsolatesTable = ( { data } ) => {
                             <tr key={i} id={i}>
                             <td>
                                 <b>
-                                <Link className="gdb-link" to={`/isolate/${encodeURIComponent(sequence.isolate)}`} >
+                                <Link className="gdb-link" to={`/strain/${encodeURIComponent(sequence.isolate)}`} >
                                     {sequence.isolate}
                                 </Link>
                                 </b>
@@ -137,4 +137,4 @@ const IsolatesTable = ( { data } ) => {
     );
 };
 
-export default IsolatesTable;
+export default StrainsTable;
