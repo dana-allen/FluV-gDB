@@ -16,7 +16,7 @@ import SequencesFilter from '../../../components/filters/SequencesFilter';
 // import '../../../assets/styles/sequences.css';
 
 
-import { useGetIsolates } from '../../../hooks';
+import { useGetStrains } from '../../../hooks';
 
 const Strains = () => {
     const { downloadFile } = useDownload();
@@ -28,7 +28,7 @@ const Strains = () => {
     const { triggerError } = useErrorHandler();
     const { triggerLoadingWheel } = useLoadingWheelHandler();
 
-    const { data: isolates, loading, error } = useGetIsolates();
+    const { data: isolates, loading, error } = useGetStrains();
 
 
 

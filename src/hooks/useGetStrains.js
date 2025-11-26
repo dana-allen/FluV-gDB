@@ -1,6 +1,6 @@
 import useFetch from "./useFetch";
 
-function useGetIsolates(params = {}) {
+function useGetStrains(params = {}) {
     
     const queryString = new URLSearchParams(params).toString();
     const url = `${process.env.REACT_APP_BACKEND_URL}${'/api/sequences/strains/'}${queryString ? `?${queryString}` : ''}`;
@@ -10,4 +10,4 @@ function useGetIsolates(params = {}) {
 
 }
 
-export default useGetIsolates;
+export default useGetStrains;

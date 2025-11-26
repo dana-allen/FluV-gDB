@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 // Hooks and Contexts
-import { useGetIsolate } from '../../../hooks';
+import { useGetStrain} from '../../../hooks';
 import { useLoadingWheelHandler, useErrorHandler  } from "../../../contexts"
 
 // Importing stylesheets
@@ -20,7 +20,7 @@ const Isolate = () => {
     const { triggerError } = useErrorHandler();
 
     // Hooks
-    const { data: isolate, pubmedId, segments, loading, error } = useGetIsolate(decodedId);
+    const { data: isolate, pubmedId, segments, loading, error } = useGetStrain(decodedId);
     triggerLoadingWheel(loading);
     triggerError(error);
 
@@ -35,27 +35,16 @@ const Isolate = () => {
                     {"segment":"NS", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}}
                 ]
 
-    // const [showSequenceViewer, setShowSequenceViewer] = useState(false);
     const [featureData, setFeatureData] = useState(null)
-    console.log(featureData)
-    // const handleFeatreBtn = (e) => {
-    //     setFeature(e)
-    // }
+
     return (
         <div className='container'>
 
             <div className="row col-md-6">
                 <h2> Strain {decodedId} </h2>
-            </div>
-
-{/* .main-viewer {
-    width: 100%;
-    margin: 20px 0;
-} */}
+            </div> 
             
-            
-            
-
+        
             { isolate && 
                 <div>
                     <div className="row">
@@ -63,6 +52,10 @@ const Isolate = () => {
                         <div className="col-md-6">
                             <table className="table table-striped table-bordered table-font">
                 <tbody>
+                    <tr>
+                        <td><b>Strain</b></td>
+                        <td>{isolate.strain}</td>
+                    </tr>
                     <tr>
                         <td><b>Isolate ID</b></td>
                         <td>{isolate.isolate ? `${isolate.isolate}`:"-"}</td>
@@ -75,10 +68,7 @@ const Isolate = () => {
                         <td><b>Host Species</b></td>
                         <td><em>{isolate.host ? `${isolate.host}`:"-"}</em></td>
                     </tr>
-                    <tr>
-                        <td><b>Strain</b></td>
-                        <td>{isolate.strain}</td>
-                    </tr>
+                    
                     
                     <tr>
                         <td><b>Collection Date</b></td>

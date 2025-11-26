@@ -1,7 +1,7 @@
 import useFetch from "./useFetch";
 
 
-function groupByIsolate(data) {
+function groupByStrain(data) {
     let grouped = {};
     const item = data[0]
     grouped = {
@@ -18,7 +18,7 @@ function groupByIsolate(data) {
 }
 
 
-function useGetIsolate(decodedID) {
+function useGetStrain(decodedID) {
     
     const endcodedID = encodeURIComponent(decodedID);
     const url = `${process.env.REACT_APP_BACKEND_URL}/api/sequence/strain/${endcodedID}`;
@@ -32,11 +32,11 @@ function useGetIsolate(decodedID) {
     } = data|| {};
 
     const pubmedId = meta_data?.pubmed_id;
-    const isolate =data ? groupByIsolate(data) : {};
+    const isolate =data ? groupByStrain(data) : {};
 
 
     return { data: isolate, pubmedId, segments: data, ...rest };
 
 };
 
-export default useGetIsolate;
+export default useGetStrain;

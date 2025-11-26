@@ -15,9 +15,10 @@
 }
 
 .banner-container {
+    /* height: 200px; */
     height: 200px;
     text-align: center;
-    padding: 50px 0;
+    /* padding: 50px 0; */
     color: white;
     overflow: hidden;
     position: relative;
@@ -70,4 +71,27 @@
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+}
+
+
+.logo-animated {
+  animation: slideAndGrow 1.6s ease-out forwards;
+  transform-origin: center center; /* important */
+}
+
+@keyframes slideAndGrow {
+  0% {
+    transform: translateX(300px) scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-10px) scale(1.15);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(4px) scale(0.98);
+  }
+  100% {
+    transform: translateX(0px) scale(1);
+  }
 }

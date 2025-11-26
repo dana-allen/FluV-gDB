@@ -6,6 +6,11 @@ import { faSitemap, faGear, faCapsules, faVirus, faGlobe, faDna, faToolbox, faHe
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 
+
+
+
+// https://forms.office.com/Pages/DesignPageV2.aspx?subpage=design&id=KVxybjp2UE-B8i4lTwEzyIXeV0z3R4tOlq48Q3oB5EhUQzdMSDlNQkoyNUhESjkyNFdBRU9MM01JTS4u&analysis=true
+
 // Style Sheets 
 import '../assets/styles/home.css'
 import '../assets/styles/cards.css'
@@ -55,60 +60,39 @@ const Home = () => {
     );
 
 
-    return (  
+    return (      
+
         <div>  
             <div>
                 <div className="row content banner">
-                    <div className="col banner-container banner-gradient-spots">
-                        {/* <ReactSVG className='banner-svg' src="/home_background.svg" style={{width:'100%'}}/>  */}
+                    <div className="col banner-container banner-gradient-spots" style={{
+                        display: "flex",
+                        // justifyContent: "flex-end",
+                        alignItems: "center",
+                        position: "relative"
+                    }}>
+                        
+                    <div className='row'>
+                        <ReactSVG
+                            src="/flu.svg"
+                            className="banner-svg logo-animated"
+                            ></ReactSVG>
+                    {/* <ReactSVG className='banner-svg' src="/home_background copy.svg" style={{width:"100%", textAlign: "right"}}/> */}
+                        {/* <ReactSVG className='banner-svg' src="/home_background copy.svg" style={{width:'100%'}}/>  */}
                         {/* <h1 className='banner-title'><b>{process.env.REACT_APP_VIRUS_ABB}-{process.env.REACT_APP_WEB_RESOURCE}</b></h1>
                         <h4 className='banner-subtitle'><b>A <b>G</b>enome <b>D</b>ata<b>b</b>ase Resource for <b>Flu</b> <b>V</b>irus</b></h4> */}
-                    <div className='banner-title row' style={{ alignItems: "left" }}>
+                    
                         <div className="col" style={{ textAlign: "right" }}>
-                            <img src="/flu_v3_v2.svg" style={{ width: "20%", height: "auto" }} />
+                            <img src="/flu_v3_v2.svg" style={{ width: "80%", height: "100%" }} />
                             
                         </div>
 
                         <div className="col" style={{ textAlign: "left" }}>
-                            <h2><b>V</b>IRAL</h2>
-                            <h2><b>G</b>ENOME</h2>
-                            <h2><b>D</b>ATA<b>B</b>ASE</h2>
+                            <h2 style={{fontSize:"40px"}}>Flu<b>V</b></h2>
+                            <h2 style={{fontSize:"40px"}}><b>G</b>ENOME</h2>
+                            <h2 style={{fontSize:"40px"}}><b>D</b>ATA<b>B</b>ASE</h2>
                         </div>
                     </div>
-
-                    {/* <div
-                            className="banner-title"
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "1.5rem",
-                                float:'center'
-                            }}
-                            >
-
-                            <img
-                                src="/flu_v3_v2.svg"
-                                style={{ width: "70px", height: "auto" }}
-                            />
-
-                            <h2 style={{ margin: 0 }}>
-                                <b>FLU</b>
-                            </h2>
-
-                            <div
-                                style={{
-                                width: "2px",
-                                height: "60px",
-                                background: "white"
-                                }}
-                            />
-
-                            <div style={{ display: "flex", flexDirection: "column", lineHeight: "1", textAlign:'left' }}>
-                                <h2 style={{ margin: 0 }}><b>V</b>IRAL</h2>
-                                <h2 style={{ margin: 0 }}><b>G</b>ENOME</h2>
-                                <h2 style={{ margin: 0 }}><b>D</b>ATA<b>B</b>ASE</h2>
-                            </div>
-                            </div> */}
                     
                     </div>
                 </div>
@@ -138,6 +122,8 @@ const Home = () => {
                 </div>
             </div>
 
+            
+
             {/* Tab Content */}
             <div ></div>
             <div className="container">
@@ -150,6 +136,7 @@ const Home = () => {
             <hr></hr>
 
             <div className="container">
+                                
                 <div className='info-container'>
                 <h4 className='primary-color'>What is Flu?</h4>
                 {/* <p>
@@ -181,6 +168,7 @@ const Home = () => {
                     <b>NOTE</b>: we do not store any sequences submitted to {process.env.REACT_APP_VIRUS_ABB}-{process.env.REACT_APP_WEB_RESOURCE}!	   
                 </p>
                 </div>
+
             </div>
       </div> 
     );
