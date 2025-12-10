@@ -20,7 +20,7 @@ const Isolate = () => {
     const { triggerError } = useErrorHandler();
 
     // Hooks
-    const { data: isolate, pubmedId, segments, loading, error } = useGetStrain(decodedId);
+    const { data: isolate, pubmedId, segments, genomeViewerData, loading, error } = useGetStrain(decodedId);
     triggerLoadingWheel(loading);
     triggerError(error);
 
@@ -103,7 +103,7 @@ const Isolate = () => {
 
             <div style = {{'width':'100%'}} >
                 <div style = {{'display': 'flex', 'overflow-x': 'scroll', alignItems: "stretch"}}>
-                    {segments2.map((segment, i) => (
+                    {genomeViewerData.map((segment, i) => (
                         <div style={{ 
                                         minWidth: "500px", 
                                         marginLeft: "1rem", 
@@ -116,8 +116,8 @@ const Isolate = () => {
                                         textAlign: "center",
                                     }}>
                             <h6>{segment.segment}</h6>
-                            <h6><Link className='gdb-link'><b>{segment.data.alignedSeq[0].query}</b></Link></h6>
-                            <GenomeViewer data={[segment.data]} refId={segment.data.primary_accession} setFeatureData={setFeatureData}/>
+                            <h6><Link className='gdb-link'><b>{segment.alignedSeq[0].query}</b></Link></h6>
+                            <GenomeViewer data={[segment]} refId={segment.primary_accession} setFeatureData={setFeatureData}/>
                             {/* <GenomeViewer data={[segment.data]}/> */}
                         </div>          
                     ))}

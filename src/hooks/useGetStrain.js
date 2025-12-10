@@ -1,5 +1,5 @@
 import useFetch from "./useFetch";
-
+import { buildGenomeViewerResults } from '../assets/javascript/sequenceViewerHelper';
 
 function groupByStrain(data) {
     let grouped = {};
@@ -33,9 +33,13 @@ function useGetStrain(decodedID) {
 
     const pubmedId = meta_data?.pubmed_id;
     const isolate =data ? groupByStrain(data) : {};
+    const genome = {}
 
 
-    return { data: isolate, pubmedId, segments: data, ...rest };
+    const genomeViewerData = data ? data.map(item => buildGenomeViewerResults(item)) : [];
+    console.log(genomeViewerData)
+
+    return { data: isolate, pubmedId, segments: data, genomeViewerData: genomeViewerData, ...rest };
 
 };
 
