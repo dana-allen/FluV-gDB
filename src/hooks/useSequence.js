@@ -14,8 +14,8 @@ function useSequence(id) {
         alignment,
         features
     } = data|| {};
-
-    const genomeViewerData = features ? buildGenomeViewerResults(data) : []
+    console.log(data)
+    const genomeViewerData = data ? buildGenomeViewerResults(data) : []
     const regions = meta_data ? (meta_data["region"] ? formatMetaDataRegions(meta_data["region"]) : null) : null
 
     return { meta_data, alignment, sequence, genomeViewerData, regions, ...rest };

@@ -296,3 +296,8 @@ code {
 .accent-color-primary {
   accent-color: var(--primary)
 }
+
+.taxonium .md\:h-full {
+  height: 90vh !important;
+  /* height: 100% !important; */
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
+// import {  SyntaxHighlighter } from 'react-syntax-highlighter';
+// import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 
 import { getPythonCode, getRubyCode, getJSCode, getJavaCode, getRCode, getPerlCode, getStyles } from '../../../utils/apiHelper';
@@ -51,13 +51,13 @@ const APIExample = ( { api } ) => {
             <br></br>
             <br></br>
             <div style={styles.codeBox} >
-                <SyntaxHighlighter language={selectedLanguage} 
+                {/* <SyntaxHighlighter language={selectedLanguage} 
                                     style={coy}
                                     showLineNumbers 
                                     codeTagProps={{ style: { fontSize: '0.8em', lineHeight: '0.2', background:'none' } }}>
                     {activeLanguageCode}
 
-                </SyntaxHighlighter>
+                </SyntaxHighlighter> */}
 
             </div>
 

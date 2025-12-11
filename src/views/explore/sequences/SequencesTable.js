@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import Moment from 'react-moment';
+
 
 
 
@@ -47,8 +47,8 @@ const SequencesTable = ( { data=null, type=null } ) => {
                                 <td><b><Link className='gdb-link' to={type=='sequence' ? `/sequence/${sequence.primary_accession}`:`/reference/${sequence.primary_accession}` }> {sequence.primary_accession} </Link> </b></td>
                                 <td>{sequence["serotype"]}</td>
                                 <td>{sequence["segment"]}</td>
-                                <td><Moment format="DD-MMM-YYYY">{sequence.create_date}</Moment></td>
-                                <td><Moment format="DD-MMM-YYYY">{sequence.update_date}</Moment></td>
+                                <td>{sequence.create_date}</td>
+                                <td>{sequence.update_date}</td>
                                 <td>{sequence.real_length}</td>
                                 <td>{sequence.isolate ? `${sequence.isolate}`:"-"}</td>
                                 <td>{sequence.country ? `${sequence.country}` :"-"}</td>

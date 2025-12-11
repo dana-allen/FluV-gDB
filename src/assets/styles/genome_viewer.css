@@ -106,7 +106,9 @@
 }
 
 .features {
-    height: 30px;
+    /* height: 30px; */
+    width: 100%;
+    position: relative;
 }
 
 .features-btn {
@@ -137,4 +139,23 @@
     text-align: right;
     font-size: 12px;
     padding-bottom: 2px;
+}
+
+
+
+/* Connecting line */
+.features-btn-container .connector {
+  height: 2px;
+  background-color: #008cba;
+  border: 1px solid #008cba;
+  position: absolute;
+  top: 14px;
+  transition: background-color 0.2s;
+}
+
+/* Hover state for the entire container */
+.features-btn-container:hover .features-btn,
+.features-btn-container:hover .connector {
+  border: 1px solid #005f7f;
+  background-color: #005f7f;
 }

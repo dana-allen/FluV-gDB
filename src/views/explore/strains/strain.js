@@ -24,17 +24,6 @@ const Isolate = () => {
     triggerLoadingWheel(loading);
     triggerError(error);
 
-    const segments2 = [
-                    {"segment":"PB1", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 1, "end":7}, {"name": "Matrix Protein", "start": 90, "end":120}], "alignedSeq": [{"query":"MK592506", "seq": 'AGCTGAGGA'}], "seq":"ACCTGAGTA"}},
-                    {"segment":"PB2", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 2, "end":5}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"HA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"M", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"PA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"NP", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"NA", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}},
-                    {"segment":"NS", "data": {"primary_accession": "OQ793983", "features": [{"name": "polymerase PB2", "start": 28, "end":2304}], "alignedSeq": [{"query":"MK592506", "seq": 'ASCVS'}], "seq":"ACVSDS"}}
-                ]
-
     const [featureData, setFeatureData] = useState(null)
 
     return (
@@ -108,7 +97,7 @@ const Isolate = () => {
                                         minWidth: "500px", 
                                         marginLeft: "1rem", 
                                         paddingLeft: "1rem", 
-                                        borderRight: i !== segments2.length - 1 ? "2px solid #ccc" : "none", 
+                                        borderRight: i !==  7 ? "2px solid #ccc" : "none", 
                                         display: "flex",
                                         flexDirection: "column",
                                         alignItems: "center",

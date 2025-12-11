@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink} from '@fortawesome/free-solid-svg-icons'
 
@@ -28,20 +28,16 @@ const SequenceDetails = ({ meta_data, alignment }) => {
                     </tr>
                     <tr>
                         <td><b>NCBI Entry Creation Date</b></td>
-                        <td><Moment format="DD-MMM-YYYY">{meta_data.create_date}</Moment></td>
+                        <td>{meta_data.create_date}</td>
                     </tr>
                     <tr>
                         <td><b>NCBI Last Update Date</b></td>
-                        <td><Moment format="DD-MMM-YYYY">{meta_data.update_date}</Moment></td>
+                        <td>{meta_data.update_date}</td>
                     </tr>
                     
                     <tr>
                         <td><b>Sequence Length</b></td>
                         <td>{meta_data["real_length"] ? meta_data["real_length"] : '-'}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Strain</b></td>
-                        <td>{meta_data["strain"] ? meta_data["strain"] : '-'}</td>
                     </tr>
                     <tr>
                         <td><b>Strand</b></td>

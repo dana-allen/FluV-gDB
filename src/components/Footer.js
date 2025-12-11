@@ -15,9 +15,7 @@ const Footer = () => {
         </div>
 
         <div className="col-md-9">
-          <p><small>{process.env.REACT_APP_VIRUS_ABB}-{process.env.REACT_APP_WEB_RESOURCE} is based on the <a target="_blank" href="https://github.com/josephhughes/V-gTK">Viral Genome Toolkit</a> software framework, developed by the 
-            <a target="_blank" href="http://www.gla.ac.uk/researchinstitutes/iii/cvr/"> MRC-University of Glasgow Centre for Virus Research</a>, in collaboration with the <a href=""> University of Glasgow 
-            Institue of Biodiversity Animal Health and Comparative Medicine</a>, the <a href="">UK Government Animal and Plant Health Agency</a>, and the <a href="">US Centers for Disease Control and Prevention</a>.  
+          <p><small>{process.env.REACT_APP_VIRUS_ABB}-{process.env.REACT_APP_WEB_RESOURCE} is developed by the <a target="_blank" href="http://www.gla.ac.uk/researchinstitutes/iii/cvr/">MRC-University of Glasgow Centre for Virus Research</a>.
             Contact <a href="">Web Resource Support</a> with questions or feedback.
             <br/><span className='beta-text'>Please note this is beta software, still undergoing development and testing before its official release.</span></small>
           </p> 
@@ -28,11 +26,14 @@ const Footer = () => {
               <a target="_blank" href="http://www.gla.ac.uk/researchinstitutes/iii/cvr/">
                 <img className='mrc-logo' alt="MRC logo" src="/footer/MRC1.png"/>
               </a>
-              <a target="_blank" href="https://www.gla.ac.uk/researchinstitutes/bahcm/">
-                <img className='ibahcm-logo' alt="IBAHCM logo" src="/footer/IBAHCM.png"></img>
+              <a target="_blank" href="https://www.gla.ac.uk/research/az/cvr/">
+                <img className='ibahcm-logo' alt="UofG logo" src="/footer/UoG1.png"></img>
               </a>	
-              <a target="_blank" href="https://www.gov.uk/government/organisations/animal-and-plant-health-agency">
-                <img className='apha-logo' alt="APHA logo" src="/footer/APHA_desat.png"></img>
+              <a target="_blank" href="https://www.rvc.ac.uk/">
+                <img className='apha-logo' alt="RVC logo" style={{backgroundColor:"rgb(127, 63, 152)"}} src="/footer/rvc_logo.png"></img>
+              </a>
+              <a target="_blank" href="">
+                <img className='apha-logo' alt="Trail Map logo" src="/footer/cropped_logo.png"></img>
               </a>
             </p>
           </div>

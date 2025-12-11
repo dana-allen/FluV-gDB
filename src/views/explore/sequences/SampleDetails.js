@@ -8,6 +8,12 @@ const SampleDetails = ({ meta_data, regions }) => {
             <table className="table table-striped table-bordered table-font">
                 <tbody>
                     <tr>
+                        <td><b>Strain</b></td>
+                        <td>{meta_data.Parsed_strain ?<Link className="gdb-link" to={`/strain/${encodeURIComponent(meta_data.Parsed_strain )}`} >
+                                    {meta_data.Parsed_strain }
+                                </Link> : "-"}</td>
+                    </tr>
+                    <tr>
                         <td><b>Isolate ID</b></td>
                         <td>{meta_data.isolate ?<Link className="gdb-link" to={`/isolate/${encodeURIComponent(meta_data.isolate )}`} >
                                     {meta_data.isolate }

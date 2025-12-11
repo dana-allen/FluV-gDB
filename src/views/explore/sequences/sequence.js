@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
@@ -7,8 +7,10 @@ import { Button } from 'react-bootstrap';
 // Custom Components
 import SampleDetails from './SampleDetails';
 import SequenceDetails  from './SequenceDetails';
+import GenomeViewer2 from '../../../components/genomeViewer/GenomeViewer2'
 import GenomeViewer from '../../../components/genomeViewer/GenomeViewer'
-
+import SequenceViewer from '../../../components/genomeViewer/SequenceViewer';
+import { nucColors } from '../../../assets/javascript/sequenceViewerHelper';
 // Helpers
 import { downloadPng } from "../../../utils/downloadHelper";
 
@@ -37,6 +39,10 @@ const Sequence = () => {
     const pubmedId = meta_data?.pubmed_id;
     const insertions = alignment?.insertions;
 
+    console.log(genomeViewerData)
+
+    const [featureData, setFeatureData] = useState(null)
+
     return (
         <div className='container'>
 
@@ -52,23 +58,42 @@ const Sequence = () => {
                                             alignment={alignment ? alignment : null} />
                         </div>
                         <div className="col-md-6">
-                            <SampleDetails meta_data={meta_data} regions={regions} />
+                            <div className="row">
+                                <div>
+                                    <SampleDetails meta_data={meta_data} regions={regions} />
+                                </div> 
+                                <div>
+                                    <h4 className='title-sub'>Sequence</h4>
+                                </div> 
+                                <div>
+                                    <Button size='sm' 
+                                            className='btn-main-filled' 
+                                            onClick={() => downloadFile('>'+id+'\n'+sequence.toUpperCase(), id+".fasta", "fasta")}>
+                                        Download Sequence
+                                    </Button>
+                                </div> 
+                                <br></br>
+                                <br></br>
+                                <div>
+                                    <h4 className='title-sub'>Phylogenetic Tree</h4>
+                                    </div> 
+                                    <div>
+                                    <p>View the <Link className='gdb-link'>interactive phylogeneic tree.</Link></p>
+                                </div> 
+                                
+                            </div> 
+                        <div>
+                            
                         </div>
+                        </div>
+                        {/* </div> */}
                     </div>
                     <div className='row'>
-                        <div className="col-md-6">
-                            <h4 className='title-sub'>Sequence</h4>
-                        </div> 
-                        <div>
-                            <Button size='sm' 
-                                    className='btn-main-filled' 
-                                    onClick={() => downloadFile('>'+id+'\n'+sequence.toUpperCase(), id+".fasta", "fasta")}>
-                                Download Sequence
-                            </Button>
-                        </div>
+                        
 
                     </div>
                     <br></br>
+                    {/* <hr></hr> */}
 
                     { meta_data.exclusion_status === 0 && alignment &&
                         <div className="row">
@@ -86,12 +111,24 @@ const Sequence = () => {
                             
                             {alignment && 
                                 <div ref={viewerRef}>
-                                    {genomeViewerData && <GenomeViewer data={genomeViewerData} refId={alignment.alignment_name}/>}
+                                    {/* {genomeViewerData && <GenomeViewer data={genomeViewerData} refId={alignment.alignment_name}/>} */}
+                                    <GenomeViewer2 data={[genomeViewerData]} refId={genomeViewerData.primary_accession} setFeatureData={setFeatureData}/>
+                                    {/* <GenomeViewer data={[genomeViewerData]} refId={genomeViewerData.primary_accession}/> */}
                                 </div> 
                             }
+                            {featureData && 
+                
+                                <SequenceViewer start={featureData.start} 
+                                                        end={featureData.end} 
+                                                        refSequence={featureData.refSequence} 
+                                                        currentSequences={featureData.currentSequences} 
+                                                        nucPositions={featureData.nucPositions} />
+                                }
                         </div>
                     }
                     <br></br>
+
+     
 
                     { insertions &&
                         <div className='row'>
@@ -99,12 +136,49 @@ const Sequence = () => {
                                 <h4 className='title-sub'>Insertions</h4>
                             </div>
                             <div>
-                                {insertions.map((insertion, i) => (
-                                    <p>{insertion.insertion}</p>
-                                ))}
+                                {insertions.map((insertion, i) => {
+                                    const row = insertion.insertion.split(";")
+                                    return (
+                                        <table className="table table-striped table-bordered table-font" style={{width:"50%"}}>
+                                            <thead>
+                                                <tr>
+                                                    <th>Nucleotide Position</th>
+                                                    <th>Insertions</th>
+                                                </tr>
+                                            </thead>
+                                            {row.map((i) => {
+                                                const k = i.split(":")
+                                                return (
+                                            <tbody>
+                                                <tr>
+                                                    <td><p>{k[0]}</p></td>
+                                                    <td>
+                                                        <div className='blocks'>
+                                                            {k[1].split("").map((nuc) => (
+                                                                <div className='block'
+                                                                    style={{
+                                                                        backgroundColor: nucColors[nuc],
+                                                                        width:'15px'
+                                                                    }}
+                                                                ><b>{nuc}</b></div>
+                                                            ))}
+                                                        </div>
+
+                                                    </td>
+                                                    
+                                                </tr>
+                                            </tbody>
+                                                )
+                                            })}
+                                        </table>
+
+                                    )
+                                })}
                             </div>
                         </div>
                     }
+
+                      
 
                     { pubmedId && 
                         <div>

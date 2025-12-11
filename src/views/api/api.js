@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import SwaggerUI from "swagger-ui-react";
-import "swagger-ui-react/swagger-ui.css"
+// import SwaggerUI from "swagger-ui-react";
+// import "swagger-ui-react/swagger-ui.css"
 // import  APITable  from './components/APITable';
 import { Link } from 'react-router-dom';
 import { groupPathsByTags } from '../../utils/apiHelper';

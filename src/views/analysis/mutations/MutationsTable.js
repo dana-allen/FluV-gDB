@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 import PagingButtons from '../../../components/buttons/PagingButtons'
 
 import * as d3 from "d3";
@@ -86,8 +86,8 @@ const MutationsTable = ( { mutations  } ) => {
 
                             <td><Link className='custom-link' to={`/sequence/${sequence.primary_accession}`}> {sequence.primary_accession} </Link> </td>
                             <td>{sequence["display_name"]}</td>
-                            <td><Moment format="DD-MMM-YYYY">{sequence.create_date}</Moment></td>
-                            <td><Moment format="DD-MMM-YYYY">{sequence.update_date}</Moment></td>
+                            <td>{sequence.create_date}</td>
+                            <td>{sequence.update_date}</td>
                             <td>{sequence.length}</td>
                             <td>{sequence.isolate ? `${sequence.isolate}`:"-"}</td>
                             <td>{sequence.country ? `${sequence.country}` :"-"}</td>
