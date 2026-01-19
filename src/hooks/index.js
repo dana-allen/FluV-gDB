@@ -10,3 +10,4 @@ export { default as useSequence } from "./useSequence";
 export { default as useSequences } from "./useSequences";
 export { default as useMap } from "./useMap";
 export { default as usePhylogenyTree } from "./usePhylogenyTree";
+export { default as useAdaptiveMutationsChart } from "./useAdaptiveMutationsChart";

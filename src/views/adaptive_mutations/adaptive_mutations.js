@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import useAdaptiveMutations from "../../hooks/useAdaptiveMutations";
 import AdaptiveMutationsTable from "./AdaptiveMutationsTable";
 import TreeView from '../../components/trees/TreeView';
+import { useAdaptiveMutationsChart } from '../../hooks'
 
+import { BarChart } from "@mui/x-charts";
 
 const AdaptiveMutations = () => {
     const [data, setData] = useState([])
     const { mutations } = useAdaptiveMutations();
-    
+
+    const { translated_sequences } = useAdaptiveMutationsChart('PB2');
+    console.log("TRANSLATED SEQUENCES", translated_sequences)
     const handleItemClick = (id) => {
         const matches = mutations.filter(mutation => mutation["segment"]==id[0]);
         setData(matches)
@@ -26,11 +30,13 @@ const AdaptiveMutations = () => {
     useEffect(() => {
         setData(mutations)
     }, [mutations] )
-
-
+   
+    const series = [{'host':'bear', 'A':1, 'B':2},
+        {'host':'donkey', 'A':1, 'B':2}
+    ]
     return (
-        <div className="container">
-            <h2>Adaptive Mutations</h2>
+        <div className="container" >
+            {/* <h2>Adaptive Mutations</h2>
             <p>
                 The Adaptation Mutations provides detection and analysis of mammalian adaptions in 
                 an amino acid sequence. Click on a table row to visualise an interactive chart of the 
@@ -52,7 +58,42 @@ const AdaptiveMutations = () => {
                 />
             </div>
             <br></br>
-            <AdaptiveMutationsTable mutations={data} />
+            <AdaptiveMutationsTable mutations={data} /> */}
+
+            <BarChart
+
+                xAxis={[{scaleType:"band", data: ['group A', 'group B', 'group C'] }]}
+                series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
+                height={300}
+                grouped
+
+                // series={translated_sequences}
+                // xAxis={[{ scaleType: "band" }]}
+                // yAxis={[{ label: "Count of primary_accessions" }]}
+                // grouped="true"
+        
+                // onItemClick={(event, d) => clickHandler(event, d, series)}
+                // xAxis={[
+                //     {
+                //     scaleType: "band",
+                //     data: translated_sequences.map(({ label }) => label),
+                //     label: "Percentage of sequences with given combination of mutations",
+                //     },
+                // ]}
+                // // yAxis={[{ label: "Percentage (%)", max: 100 }]} // Ensure Y-axis is 0-100%
+                // series={translated_sequences}
+                // // // width={800}
+                // height={400}
+                // slotProps={{
+                //     legend: {
+                //     sx: { padding: 25 },
+                //     position: { 
+                //         vertical: 'top',
+                //         horizontal: 'end'
+                //     }
+                //     }
+                // }}
+            />
         
         </div>
     );

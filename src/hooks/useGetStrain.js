@@ -32,7 +32,7 @@ function useGetStrain(decodedID) {
     } = data|| {};
 
     const pubmedId = meta_data?.pubmed_id;
-    const isolate =data ? groupByStrain(data) : {};
+    const isolate = data ? groupByStrain(data) : {};
     const genome = {}
 
 
