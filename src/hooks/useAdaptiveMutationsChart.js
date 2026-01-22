@@ -47,7 +47,7 @@ function useAdaptiveMutationsChart(params) {
     
     const url = `${process.env.REACT_APP_BACKEND_URL}/api/adaptive_mutations_chart/${params}`;
     const { data, ...rest } = useFetch(url);
-    // console.log("chart data", data)
+    console.log("chart data", data)
 
 
     const {xLabels, series} = data ? groupByHost(data) : {}
