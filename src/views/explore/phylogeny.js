@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import {FormGroup, FormControlLabel, Checkbox, FormControl, RadioGroup, Radio} from '@mui/material'
 // import Taxonium from "taxonium-component";
-import Taxonium from "taxonium-component";
+// import Taxonium from "taxonium-component";
 // import { TaxoniumWrapper } from "taxonium-component";
 import { usePhylogenyTree } from '../../hooks'
 
@@ -141,7 +141,7 @@ const metadata = {
 
       <div className="h-screen w-full !important">
         {/* <Taxonium backendUrl="https://api.cov2tree.org" />; */}
-        <Taxonium 
+        {/* <Taxonium 
           sourceData={sourceData }
           // onNodeDetailsLoaded={handleNodeDetailsLoaded}
           title={"HELLO THIS IS A TEST"}
@@ -159,7 +159,7 @@ const metadata = {
                   
                 </>`}
 
-                          />
+                          /> */}
       </div>
       
       
