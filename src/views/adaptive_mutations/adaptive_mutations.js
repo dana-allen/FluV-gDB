@@ -8,6 +8,46 @@ import { BarChart } from "@mui/x-charts";
 import ProteinSequence from "./protein_sequence";
 import { Button } from "react-bootstrap";
 import { Tabs, Tab, Box } from "@mui/material";
+import { RotatingLines } from 'react-loader-spinner'
+
+import '../../assets/styles/adaptive_mutations.css'
+
+function groupByHost(data, residue) {
+
+    const counts = {};
+
+    data.forEach(({ primary_accession, host, protein }) => {
+        if (!protein || protein.length < residue) return;
+
+        // Position 4 (1-based) = index 3
+        const aa = protein[residue-1];
+
+        if (!counts[host]) counts[host] = {};
+        if (!counts[host][aa]) counts[host][aa] = new Set();
+
+        counts[host][aa].add(primary_accession);
+    });
+
+    const hosts = Object.keys(counts);
+
+    const xLabels = hosts.map(host => ({ label: host }));
+
+    // Collect all amino acids
+    const aminoAcids = new Set();
+    hosts.forEach(host => {
+        Object.keys(counts[host]).forEach(aa => aminoAcids.add(aa));
+    });
+
+    const series = Array.from(aminoAcids).map(aa => ({
+        label: aa,
+        stack: "total",
+        data: hosts.map(host =>
+            counts[host][aa] ? counts[host][aa].size : 0
+        )
+    }));
+
+    return {xLabels, series}
+}
 
 
 const AdaptiveMutations = () => {
@@ -15,7 +55,7 @@ const AdaptiveMutations = () => {
     const [data, setData] = useState([])
     const { mutations } = useAdaptiveMutations();
     const [segment, setSegment] = useState('Segment 1 (PB2)')
-    const { translated_sequences, xLabels, series } = useAdaptiveMutationsChart('PB2');
+    const { translated_sequences } = useAdaptiveMutationsChart('PB2');
     // console.log("TRANSLATED SEQUENCES", xLabels, series)
     const handleItemClick = (id) => {
         const matches = mutations.filter(mutation => mutation["segment"]==id[0]);
@@ -23,6 +63,8 @@ const AdaptiveMutations = () => {
         setSegment(id[2])
         setData(matches)
     }
+
+    
 
 
     const segments = [{'name': "PB2", 'text': "Segment 1 (PB2)"},
@@ -45,6 +87,13 @@ const AdaptiveMutations = () => {
   const handleChange = (newValue) => {
     setTab(newValue);
   };
+
+  const [residue, setResidue] = useState();
+  const handleResidueClick = (e) => {
+    setResidue(e)
+  };
+
+  const {xLabels, series} = translated_sequences ? groupByHost(translated_sequences, residue) : {}
    
 
     return (
@@ -72,14 +121,15 @@ const AdaptiveMutations = () => {
                 />
               </div>
               <div className='col-9'>
-                {xLabels && 
+                <Typography>
+                  Frequency of amino acids at consensus position
+                </Typography>
+                <Typography style={{'fontSize':'10px'}} marginBottom={2}>
+                  {segment} Position {residue}
+                </Typography>
+                {xLabels ? 
                   <div>
-                  <Typography>
-                      Frequency of amino acids at consensus position
-                    </Typography>
-                    <Typography style={{'fontSize':'10px'}} marginBottom={2}>
-                      {segment} Position {4}
-                    </Typography>
+                  
                     <BarChart
             
                       //   onItemClick={(event, d) => clickHandler(event, d, series)}
@@ -94,20 +144,38 @@ const AdaptiveMutations = () => {
                         series={series}
                         height={400}
                         slotProps={{
-                          legend: {
-                            sx: { padding: 25 },
-                            position: { 
-                              vertical: 'top',
-                              horizontal: 'end'
-                            }
-                          }
-                        }}
+                        legend: {
+                          sx: {
+                            fontSize: 14,
+                          
+                            
+                          },
+                        },
+                      }}
                       /> 
-                      <p style={{marginLeft: '30px', marginRight: '30px', fontSize:'12px'}}>
-                        Amino acid positions for HA mutations are based on mature peptide numbering. 
-                        Amino acid positions for mutations in all other segments are based on full-length 
-                        protein numbering.
-                      </p>
+                      <ul style={{marginLeft: '30px', marginRight: '30px', fontSize:'12px'}}>
+                        <li>Amino acid positions for HA mutations are based on mature peptide numbering.</li> 
+                        <li>Amino acid positions for mutations in all other segments are based on full-length 
+                        protein numbering.</li>
+                      </ul>
+                  </div>
+                  :
+                  <div style={{ display:'flex',
+                                'justify-content':'center', 
+                                'align-items':'center',
+                                'height':'100%'  }}>
+                    <div className='align-center'>
+
+                      <RotatingLines visible={true}
+                            height="45"
+                            width="45"
+                            strokeColor="var(--primary)"
+                            strokeWidth="5"
+                            animationDuration="1"
+                            ariaLabel="rotating-lines-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""/>
+        </div>
                   </div>
 
                 }
@@ -118,22 +186,12 @@ const AdaptiveMutations = () => {
             
             <br></br>
 
-            <p>View <Button className='btn-main' onClick={()=>handleChange(0)}>Table</Button> 
-                    <Button className='btn-main' onClick={()=>handleChange(1)}>Sequence </Button>
+            <p>view: <Button size='sm' className='btn-table-sequence' onClick={()=>handleChange(0)}>Table</Button> 
+                    <Button size='sm' className='btn-table-sequence' onClick={()=>handleChange(1)}>Sequence </Button>
             </p>
             <hr></hr>
-              {tab === 0 && <AdaptiveMutationsTable mutations={data} />}
-              {tab === 1 && <ProteinSequence selectedSegement={segment} mutations={data} />}
-           
-
-
-            {/* <AdaptiveMutationsTable mutations={data} />
-
-            <ProteinSequence /> */}
-            
-
-            
-        
+              {tab === 0 && <AdaptiveMutationsTable mutations={data} residueClick={handleResidueClick}/>}
+              {tab === 1 && <ProteinSequence selectedSegement={segment} mutations={data} residueClick={handleResidueClick}/>}
         </div>
     );
 };

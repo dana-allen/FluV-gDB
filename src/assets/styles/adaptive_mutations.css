@@ -1,0 +1,22 @@
+.btn-table-sequence {
+  color: #fff;
+  background-color: var(--secondary);
+  border-color: #fff;
+  border-radius: 20px !important;
+}
+
+.btn-table-sequence.show {
+  color: #fff;
+  background-color: var(--secondary);
+  border-color: #fff;
+}
+
+.btn-table-sequence:hover {
+  background-color: var(--secondary-light) !important;
+  border: var(--secondary-light);
+}
+
+.btn-table-sequence:active {
+  background-color: var(--secondary-light) !important;
+  border: var(--secondary-light);
+}

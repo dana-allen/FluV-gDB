@@ -50,14 +50,16 @@ function useAdaptiveMutationsChart(params) {
     console.log("chart data", data)
 
 
-    const {xLabels, series} = data ? groupByHost(data) : {}
-    console.log("xlabels", xLabels)
+    // const {xLabels, series} = data ? groupByHost(data) : {}
+    // console.log("xlabels", xLabels)
 
     
 
     // console.log(chart_data)
 
-    return {translated_sequences: {}, xLabels, series};
+    // return {translated_sequences: {}, xLabels, series};
+
+    return {translated_sequences: data}
 
 };
 

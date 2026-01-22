@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
 
-const AdaptiveMutationsTable = ( { mutations=null } ) => {
+const AdaptiveMutationsTable = ( { mutations=null, residueClick } ) => {
     const [currentItems, setCurrentItems] = useState([]);
     const [startRecord, setStartRecord] = useState('')
     const [endRecord, setEndRecord] = useState('')
@@ -19,13 +19,13 @@ const AdaptiveMutationsTable = ( { mutations=null } ) => {
         setEndRecord(items[2])
     };
 
-    const handleCodon = (codon, segment) => {
-
-    }
-
     return (
         <div>
+            <ul style={{fontSize:"12px"}}>
+                <li>Click on a table row to visualise an interactive chart of the frequencies of amino acids aligned at that position across our dataset of cluster representative sequences.</li>
+            </ul>
             {mutations && 
+            
             <div>
                 <PagingButtons data={mutations} onPageChange={handlePageChange}> </PagingButtons> 
                 <a>Mutations {startRecord} to {endRecord} of {mutations.length}</a>
@@ -54,7 +54,9 @@ const AdaptiveMutationsTable = ( { mutations=null } ) => {
                                     <td>
                                         { mutation.doi ? <Link className='gdb-link' to={`https://www.ncbi.nlm.nih.gov/pubmed/${mutation.doi}`} target="_blank"> <FontAwesomeIcon icon={faLink} /> {mutation.authors} </Link>:"-" }
                                     </td>
-                                    <td><Button size="sm" className="paging-buttons" onClick={handleCodon(mutation["position"], mutations["segment"])}> View</Button></td>
+                                    <td><Button size="sm" 
+                                                className="paging-buttons" 
+                                                onClick={()=>residueClick(mutation["position"])}> View</Button></td>
                                     
                                 </tr>
                             ))}
