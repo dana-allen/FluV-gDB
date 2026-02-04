@@ -191,7 +191,7 @@ const AdaptiveMutations = () => {
             </p>
             <hr></hr>
               {tab === 0 && <AdaptiveMutationsTable mutations={data} residueClick={handleResidueClick}/>}
-              {tab === 1 && <ProteinSequence selectedSegement={segment} mutations={data} residueClick={handleResidueClick}/>}
+              {tab === 1 && <ProteinSequence selectedSegement={segment} mutations={data} residueClick={handleResidueClick} translated_sequences={translated_sequences}/>}
         </div>
     );
 };

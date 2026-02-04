@@ -1,14 +1,14 @@
-export const buildGenomeViewerResults = (data) => {
+export const buildGenomeViewerResults = (alignment) => {
     var features = []
-    for(let i=0; i<data["alignment"]["features"].length; i++){
-        features.push({name: data["alignment"]["features"][i]["product"], 
-                        start: data["alignment"]["features"][i]["cds_start"],
-                        end: data["alignment"]["features"][i]["cds_end"]
+    for(let i=0; i<alignment["features"].length; i++){
+        features.push({name: alignment["features"][i]["product"], 
+                        start: alignment["features"][i]["cds_start"],
+                        end: alignment["features"][i]["cds_end"]
         })
     }
-    const results = {primary_accession: data["alignment"]["alignment_name"],
-                    seq: data["alignment"]["ref_seq"].toUpperCase(),
-                    alignedSeq: [{query:data["alignment"]["sequence_id"], seq:data["alignment"]["alignment"].toUpperCase()}],
+    const results = {primary_accession: alignment["alignment_name"],
+                    seq: alignment["ref_seq"].toUpperCase(),
+                    alignedSeq: [{query:alignment["sequence_id"], seq:alignment["alignment"].toUpperCase()}],
                     features: features
     }
     return results

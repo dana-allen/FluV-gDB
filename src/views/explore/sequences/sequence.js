@@ -1,25 +1,28 @@
 import { useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLink } from '@fortawesome/free-solid-svg-icons'
+
 import { Button } from 'react-bootstrap';
 
 // Custom Components
 import SampleDetails from './SampleDetails';
 import SequenceDetails  from './SequenceDetails';
-import GenomeViewer2 from '../../../components/genomeViewer/GenomeViewer2'
-import GenomeViewer from '../../../components/genomeViewer/GenomeViewer'
-import SequenceViewer from '../../../components/genomeViewer/SequenceViewer';
-import { nucColors } from '../../../assets/javascript/sequenceViewerHelper';
+import InsertionDetails from './InsertionDetails';
+import PubMedRefDetails from './PubMedRefDetails'
+
+import GenomeViewer3 from 'components/genomeViewer/GenomeViewer3'
+import GenomeViewer from 'components/genomeViewer/GenomeViewer'
+import SequenceViewer from 'components/genomeViewer/SequenceViewer';
+
 // Helpers
-import { downloadPng } from "../../../utils/downloadHelper";
+import { downloadPng } from "utils/downloadHelper";
 
 // Hooks and Contexts
-import { useDownload, useSequence } from '../../../hooks';
-import { useLoadingWheelHandler, useErrorHandler  } from "../../../contexts"
+import { useDownload, useSequence } from 'hooks';
+import { useLoadingWheelHandler, useErrorHandler  } from "contexts"
 
 // Importing stylesheets
-import '../../../assets/styles/sequence.css'
+import 'assets/styles/sequence.css';
+
 
 const Sequence = () => {
 
@@ -32,12 +35,19 @@ const Sequence = () => {
     const { triggerError } = useErrorHandler();
 
     // Hooks
-    const { meta_data, alignment, sequence, genomeViewerData, regions, loading, error } = useSequence(id);
+    const { meta_data, 
+            sequence,
+            alignment,  
+            insertions,
+            formatted_regions,
+            genomeViewerData, 
+            loading, error } = useSequence(id);
+
     triggerLoadingWheel(loading);
     triggerError(error);
 
     const pubmedId = meta_data?.pubmed_id;
-    const insertions = alignment?.insertions;
+    // const insertions = alignment?.insertions;
 
     console.log(genomeViewerData)
 
@@ -56,22 +66,24 @@ const Sequence = () => {
                         <div className="col-md-6">
                             <SequenceDetails meta_data={meta_data} 
                                             alignment={alignment ? alignment : null} />
-                        </div>
-                        <div className="col-md-6">
-                            <div className="row">
-                                <div>
-                                    <SampleDetails meta_data={meta_data} regions={regions} />
-                                </div> 
-                                <div>
+
+                            {/* <div>
                                     <h4 className='title-sub'>Sequence</h4>
-                                </div> 
-                                <div>
+                                </div>  */}
+                                <div style={{'text-align':'right'}}>
                                     <Button size='sm' 
                                             className='btn-main-filled' 
                                             onClick={() => downloadFile('>'+id+'\n'+sequence.toUpperCase(), id+".fasta", "fasta")}>
                                         Download Sequence
                                     </Button>
                                 </div> 
+                        </div>
+                        <div className="col-md-6">
+                            <div className="row">
+                                <div>
+                                    <SampleDetails meta_data={meta_data} regions={formatted_regions} />
+                                </div> 
+                                
                                 <br></br>
                                 <br></br>
                                 <div>
@@ -111,19 +123,21 @@ const Sequence = () => {
                             
                             {alignment && 
                                 <div ref={viewerRef}>
-                                    {/* {genomeViewerData && <GenomeViewer data={genomeViewerData} refId={alignment.alignment_name}/>} */}
-                                    <GenomeViewer2 data={[genomeViewerData]} refId={genomeViewerData.primary_accession} setFeatureData={setFeatureData}/>
-                                    {/* <GenomeViewer data={[genomeViewerData]} refId={genomeViewerData.primary_accession}/> */}
+                                    <GenomeViewer3 data={alignment}
+                                                    setFeatureData={setFeatureData}/>
+                                    {/* <GenomeViewer2 data={[genomeViewerData]} 
+                                                    refId={genomeViewerData.primary_accession} 
+                                                    setFeatureData={setFeatureData}/> */}
                                 </div> 
                             }
-                            {featureData && 
+                            {/* {featureData && 
                 
                                 <SequenceViewer start={featureData.start} 
                                                         end={featureData.end} 
                                                         refSequence={featureData.refSequence} 
                                                         currentSequences={featureData.currentSequences} 
                                                         nucPositions={featureData.nucPositions} />
-                                }
+                                } */}
                         </div>
                     }
                     <br></br>
@@ -131,70 +145,11 @@ const Sequence = () => {
      
 
                     { insertions &&
-                        <div className='row'>
-                            <div className="col-md-6">
-                                <h4 className='title-sub'>Insertions</h4>
-                            </div>
-                            <div>
-                                {insertions.map((insertion, i) => {
-                                    const row = insertion.insertion.split(";")
-                                    return (
-                                        <table className="table table-striped table-bordered table-font" style={{width:"50%"}}>
-                                            <thead>
-                                                <tr>
-                                                    <th>Nucleotide Position</th>
-                                                    <th>Insertions</th>
-                                                </tr>
-                                            </thead>
-                                            {row.map((i) => {
-                                                const k = i.split(":")
-                                                return (
-                                            <tbody>
-                                                <tr>
-                                                    <td><p>{k[0]}</p></td>
-                                                    <td>
-                                                        <div className='blocks'>
-                                                            {k[1].split("").map((nuc) => (
-                                                                <div className='block'
-                                                                    style={{
-                                                                        backgroundColor: nucColors[nuc],
-                                                                        width:'15px'
-                                                                    }}
-                                                                ><b>{nuc}</b></div>
-                                                            ))}
-                                                        </div>
-
-                                                    </td>
-                                                    
-                                                </tr>
-                                            </tbody>
-                                                )
-                                            })}
-                                        </table>
-
-                                    )
-                                })}
-                            </div>
-                        </div>
+                        <InsertionDetails insertions={insertions} />
                     }
 
-                      
-
                     { pubmedId && 
-                        <div>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <h4 className='title-sub'>Reference</h4>
-                                </div> 
-                            </div> 
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <div>
-                                        <Link className='custom-link reference' to={`https://www.ncbi.nlm.nih.gov/pubmed/${pubmedId}`} target="_blank"> <FontAwesomeIcon icon={faLink} /> PubMed {pubmedId} </Link>
-                                    </div>
-                                </div>  
-                            </div> 
-                        </div>
+                        <PubMedRefDetails pubmedId={pubmedId} />
                     }
                 </div>
             }

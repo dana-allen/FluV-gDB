@@ -8,16 +8,6 @@ import { Link } from 'react-router-dom';
 
 const SequencesTable = ( { data=null, type=null } ) => {
 
-    const [currentItems, setCurrentItems] = useState([]);
-    const [startRecord, setStartRecord] = useState('')
-    const [endRecord, setEndRecord] = useState('')
-
-    const handlePageChange = (items) => {
-        setCurrentItems(items[0]);
-        setStartRecord(items[1]);
-        setEndRecord(items[2])
-    };
-
     return (
         <div>
             

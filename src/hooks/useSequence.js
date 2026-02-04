@@ -1,24 +1,37 @@
 import useFetch from "./useFetch";
-import { buildGenomeViewerResults } from '../assets/javascript/sequenceViewerHelper';
+import { buildGenomeViewerResults } from 'assets/javascript/genomeViewerHelper';
 import { formatMetaDataRegions } from '../assets/javascript/formatHelper'
 
 function useSequence(id) {
     
-    const url = `${process.env.REACT_APP_BACKEND_URL}/api/sequence/metadata/${id}`;
+    const url = `${process.env.REACT_APP_BACKEND_URL}/api/sequence/${id}`;
 
     const { data, ...rest } = useFetch(id ? url : null);
+
+    console.log(data)
 
     const {
         meta_data,
         sequence,
         alignment,
-        features
+        regions,
+        insertions,
     } = data|| {};
-    console.log(data)
-    const genomeViewerData = data ? buildGenomeViewerResults(data) : []
-    const regions = meta_data ? (meta_data["region"] ? formatMetaDataRegions(meta_data["region"]) : null) : null
+    
+    
+    // const genomeViewerData = data ? buildGenomeViewerResults(data) : []
+    const genomeViewerData = []
+    const formatted_regions = regions ? formatMetaDataRegions(regions) : null
 
-    return { meta_data, alignment, sequence, genomeViewerData, regions, ...rest };
+    return { 
+                meta_data, 
+                sequence,
+                alignment, 
+                insertions,
+                formatted_regions,
+                genomeViewerData,
+                ...rest
+            };
 
 };
 

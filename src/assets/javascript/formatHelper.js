@@ -156,14 +156,14 @@ export const originalSequence = (sequence) => {
 
 }
 
-export const formatMetaDataRegions = (meta_data) => {
+export const formatMetaDataRegions = (regions) => {
     var region = {};
-    region["display_name"] = meta_data["display_name"]
-    region["id"] = meta_data["id"]
-    region["development_status"] = meta_data["development_status"]
-    region["status"] = formatDevelopingStatus(meta_data.is_ldc, meta_data.is_lldc, meta_data.is_sids);
-    region.m49_region_id = formatRegion(meta_data.m49_region_id);
-    region.m49_sub_region_id = formatRegion(meta_data.m49_sub_region_id);
+    region["display_name"] = regions["display_name"]
+    region["id"] = regions["id"]
+    region["development_status"] = regions["development_status"]
+    region["status"] = formatDevelopingStatus(regions.is_ldc, regions.is_lldc, regions.is_sids);
+    region.m49_region_id = formatRegion(regions.m49_region_id);
+    region.m49_sub_region_id = formatRegion(regions.m49_sub_region_id);
 
     return(region);
 

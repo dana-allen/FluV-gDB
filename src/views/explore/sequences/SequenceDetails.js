@@ -16,7 +16,12 @@ const SequenceDetails = ({ meta_data, alignment }) => {
                 <tbody>
                     <tr>
                         <td><b>NCBI Nucleotide DB Entry</b></td>
-                        <td><Link className='custom-link' to={`https://www.ncbi.nlm.nih.gov/nuccore/${meta_data.primary_accession}`} target="_blank"><FontAwesomeIcon icon={faLink} /> {meta_data.primary_accession}</Link></td>
+                        <td><Link className='custom-link' 
+                                    to={`https://www.ncbi.nlm.nih.gov/nuccore/${meta_data.primary_accession}`} 
+                                    target="_blank">
+                                    <FontAwesomeIcon icon={faLink} /> {meta_data.primary_accession}
+                            </Link>
+                        </td>
                     </tr>
                     <tr>				
                         <td><b>Serotype</b></td>
@@ -64,7 +69,8 @@ const SequenceDetails = ({ meta_data, alignment }) => {
                             <td><b>Coverage of Genome Region</b><br/>based on homology with<br/><Link className='custom-link' to={`/reference/${alignment.alignment_name}`}>{alignment.alignment_name}</Link></td>
                             <td><div>
                                 {alignment.features.map((feature) => {
-                                    let coverage = formatGenomeCoverage(alignment.alignment, feature.cds_start, feature.cds_end)
+                                    console.log(feature)
+                                    let coverage = formatGenomeCoverage(alignment.query_alignment_sequence, feature.cds_start, feature.cds_end)
                                     return (
                                         <div>
                                             { coverage > 0 && 

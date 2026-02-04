@@ -7,41 +7,47 @@ import MismatchBarRow from './components/MismatchBar';
 import { getMismatches } from '../../assets/javascript/sequenceViewerHelper'
 import '../../assets/styles/genome_viewer.css'
 
-const GenomeViewer2 = ({ data, refId=null, setFeatureData }) => {
+const GenomeViewer3 = ({ data, setFeatureData }) => {
 
     console.log(data)
 
+
     const [selectedFeature, setSelectedFeature] = useState(null);
 
-    const alignedSequences = [...(data[0]?.alignedSeq || [])]
-    const features = [...(data[0]?.features || [])];
-    const referenceSequence = data[0]?.seq
 
-    // const features = [{'name':'M1', 'start':1, 'end':25}, {'name':'M1', 'start':60, 'end':80}]
-    
-    features.push({'name':'full', 'start':1, 'end':data[0]?.seq.length || 0})
-    const positions = Array.from(new Set([].concat(...features.map(f => [f.start, f.end])))).sort((a, b) => a - b);
-
-    const min = positions[0];
-    const max = positions[positions.length - 1];
-    // const max=100;
+    const reference_accession = data ? data["reference_accession"] : null
+    const query_alignment_sequence = data ? data["query_alignment_sequence"] : null
+    const reference_alignment_sequence = data ? data["reference_alignment_sequence"] : null
+    const features = data ? data["features"] : null
+    const min = 1;
+    const max = reference_alignment_sequence.length;
     const range = max - min;
+    
+    console.log("range ", range, "max ", max)
 
+    const alignedSequences = [...(data[0]?.alignedSeq || [])]
+    // const features = [...(data[0]?.features || [])];
 
-    let mismatches = []
-    for (let i = 0; i < alignedSequences.length; i++) {
-        const newMismatches = getMismatches(referenceSequence, alignedSequences[i].seq);
-        mismatches.push(...newMismatches);
-    }
-    mismatches = [...new Set(mismatches)];
+    
+    // features.push({'name':'full', 'start':1, 'end':data[0]?.seq.length || 0})
+    const positions = Array.from(new Set([].concat(...features.map(f => [f.cds_start, f.cds_end])))).sort((a, b) => a - b);
 
-    console.log(data[0])
+    const mismatches = getMismatches(reference_alignment_sequence, query_alignment_sequence);
+
+    // let mismatches = []
+    // for (let i = 0; i < query_alignment_sequence.length; i++) {
+        
+    //     mismatches.push(...newMismatches);
+    // }
+    // mismatches = [...new Set(mismatches)];
+
+    // console.log(data[0])
 
     const onFeatureClick = (feature) => {
         const data = {
                         start: feature.start,
                         end: feature.end,
-                        refSequence: referenceSequence,
+                        refSequence: reference_alignment_sequence,
                         currentSequences: alignedSequences,
                         nucPositions: mismatches
                     }
@@ -49,10 +55,10 @@ const GenomeViewer2 = ({ data, refId=null, setFeatureData }) => {
     }
     return (
         <div className='genome-container'>
-            {refId && 
+            {reference_accession && 
                 <p>
                     Reference:&nbsp;
-                    <Link className="custom-link" to={`/reference/${refId}`}><b>{refId}</b></Link>
+                    <Link className="custom-link" to={`/reference/${reference_accession}`}><b>{reference_accession}</b></Link>
                 </p>
             }
             
@@ -67,17 +73,19 @@ const GenomeViewer2 = ({ data, refId=null, setFeatureData }) => {
                 setSelectedFeature={onFeatureClick}
             />
 
+            <MismatchBarRow
+                // key={primary_a}
+                sequence={query_alignment_sequence}
+                reference_sequence={reference_alignment_sequence}
+                min={min}
+                max={max}
+                range={range}
+            />
 
-            {alignedSequences.map((sequence) => (
-                <MismatchBarRow
-                    key={sequence.query}
-                    sequence={sequence}
-                    referenceSequence={referenceSequence}
-                    min={min}
-                    max={max}
-                    range={range}
-                />
-            ))}
+
+            {/* {alignedSequences.map((sequence) => (
+                
+            ))} */}
 
 
             {/* {selectedFeature && (
@@ -97,4 +105,4 @@ const GenomeViewer2 = ({ data, refId=null, setFeatureData }) => {
 
 }
 
-export default GenomeViewer2;
+export default GenomeViewer3;

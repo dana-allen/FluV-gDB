@@ -1,10 +1,10 @@
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
-import '../../../assets/styles/genome_viewer.css'
+import 'assets/styles/genome_viewer.css'
 
 export const FeatureBtn = ({i, feature, min, range, onClick}) => {
-    const leftPercent = ((feature.start - min) / range) * 100;
-    const widthPercent = ((feature.end - feature.start) / range) * 100;
+    const leftPercent = ((feature.cds_start - min) / range) * 100;
+    const widthPercent = ((feature.cds_end - feature.cds_start) / range) * 100;
 
     return (
       <OverlayTrigger
@@ -12,7 +12,7 @@ export const FeatureBtn = ({i, feature, min, range, onClick}) => {
           placement="top"
           overlay={
             <Tooltip id={`tooltip-${i}`}>
-            {feature.name} ({feature.start}-{feature.end})
+            {feature.product} ({feature.cds_start}-{feature.cds_end})
             </Tooltip>
           }
           >
@@ -24,7 +24,7 @@ export const FeatureBtn = ({i, feature, min, range, onClick}) => {
             }}
             onClick={() => onClick(feature)}
           >
-            {feature.name}
+            {feature.product}
           </button>
       </OverlayTrigger>
     );
@@ -32,8 +32,8 @@ export const FeatureBtn = ({i, feature, min, range, onClick}) => {
 const clamp = (v) => Math.max(0, Math.min(100, v));
 export const FeatureBtnMultiple = ({ i, feature, min, range, onClick }) => {
   // compute overall bounds of the feature
-  const minStart = Math.min(...feature.regions.map(r => r.start));
-  const maxEnd = Math.max(...feature.regions.map(r => r.end));
+  const minStart = Math.min(...feature.regions.map(r => r.cds_start));
+  const maxEnd = Math.max(...feature.regions.map(r => r.cds_end));
 
     const overallLeft = clamp(((minStart - min) / range) * 100);
   const overallWidth = clamp(((maxEnd - minStart) / range) * 100);
@@ -45,7 +45,7 @@ export const FeatureBtnMultiple = ({ i, feature, min, range, onClick }) => {
       placement="top"
       overlay={
         <Tooltip id={`tooltip-${i}`}>
-          {feature.name} {feature.regions.map(r => `(${r.start}-${r.end})`).join(', ')}
+          {feature.product} {feature.regions.map(r => `(${r.cds_start}-${r.cds_end})`).join(', ')}
         </Tooltip>
       }
     >
@@ -54,8 +54,8 @@ export const FeatureBtnMultiple = ({ i, feature, min, range, onClick }) => {
 
         {/* Individual region blocks */}
         {feature.regions.map((region, idx) => {
-          const relLeftPercent = clamp(((region.start - minStart) / (maxEnd - minStart || 1)) * 100);
-          const relWidthPercent = clamp(((region.end - region.start) / (maxEnd - minStart || 1)) * 100);
+          const relLeftPercent = clamp(((region.cds_start - minStart) / (maxEnd - minStart || 1)) * 100);
+          const relWidthPercent = clamp(((region.cds_end - region.cds_start) / (maxEnd - minStart || 1)) * 100);
 
           return (
             <div
@@ -69,7 +69,7 @@ export const FeatureBtnMultiple = ({ i, feature, min, range, onClick }) => {
                 position: "absolute"
               }}
             >
-              {feature.name}
+              {feature.product}
             </div>
           );
         })}
@@ -78,8 +78,8 @@ export const FeatureBtnMultiple = ({ i, feature, min, range, onClick }) => {
         {feature.regions.length > 1 &&
           feature.regions.slice(0, -1).map((region, idx) => {
             const next = feature.regions[idx + 1];
-            const relLeft = clamp(((region.end - minStart) / (maxEnd - minStart || 1)) * 100);
-            const relWidth = clamp(((next.start - region.end) / (maxEnd - minStart || 1)) * 100);
+            const relLeft = clamp(((region.cds_end - minStart) / (maxEnd - minStart || 1)) * 100);
+            const relWidth = clamp(((next.start - region.cds_end) / (maxEnd - minStart || 1)) * 100);
 
 
             return (
@@ -101,17 +101,18 @@ export const FeatureBtnMultiple = ({ i, feature, min, range, onClick }) => {
   );
 };
 function groupFeatures(features) {
+
   const grouped = {};
 
   features.forEach(f => {
-    if (!grouped[f.name]) grouped[f.name] = { name: f.name, regions: [] };
+    if (!grouped[f.product]) grouped[f.product] = { product: f.product, regions: [] };
 
-    grouped[f.name].regions.push({
-      start: f.start,
-      end: f.end
+    grouped[f.product].regions.push({
+      cds_start: f.cds_start,
+      cds_end: f.cds_end
     });
   });
-
+  console.log(grouped)
   // Convert object → array
   return Object.values(grouped);
 }
@@ -119,12 +120,14 @@ export const Features = ({ features, min, range, setSelectedFeature }) => {
 
   var features2 = groupFeatures(features);
 
+  console.log(features2)
+
     // Assign rows to regions to avoid overlap
   const assignRows = (features) => {
     const rows = []; // each row is an array of regions already placed
 
     features.forEach((feature) => {
-      if (feature.name != 'full'){ 
+      if (feature.product != 'full'){ 
       let rowIndex = 0;
 
       for (; rowIndex <= rows.length; rowIndex++) {
@@ -134,7 +137,7 @@ export const Features = ({ features, min, range, setSelectedFeature }) => {
         // check if any of feature's regions overlap with regions in this row
         const overlap = feature.regions.some((region) =>
           rows[rowIndex].some(
-            (r) => !(region.end < r.start || region.start > r.end) // overlap check
+            (r) => !(region.cds_end < r.cds_start || region.cds_start > r.cds_end) // overlap check
           )
         );
 
@@ -173,7 +176,7 @@ export const Features = ({ features, min, range, setSelectedFeature }) => {
         >
       {/* <div> */}
         {features2.map((feature, i) => {
-          if (feature.name === 'full') return null; 
+          if (feature.product === 'full') return null; 
           console.log(feature.regions)
           if (feature.regions.length > 1)
             return (

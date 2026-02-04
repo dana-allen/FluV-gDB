@@ -21,7 +21,7 @@ function groupByStrain(data) {
 function useGetStrain(decodedID) {
     
     const endcodedID = encodeURIComponent(decodedID);
-    const url = `${process.env.REACT_APP_BACKEND_URL}/api/sequence/strain/${endcodedID}`;
+    const url = `${process.env.REACT_APP_BACKEND_URL}/api/strain/${endcodedID}`;
     console.log(url)
     const { data, ...rest } = useFetch(decodedID ? url : null);
     const isolates = data ? data : [];

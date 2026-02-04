@@ -36,7 +36,8 @@ color: var(--secondary);
 
   /* Styling */
 .align-center {
-    text-align:center;
+    display: flex;
+    justify-content: center;
 }
 
 .align-left {

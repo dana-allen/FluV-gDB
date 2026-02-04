@@ -29,8 +29,6 @@ const AdaptiveMutationsTable = ( { mutations=null, residueClick } ) => {
             <div>
                 <PagingButtons data={mutations} onPageChange={handlePageChange}> </PagingButtons> 
                 <a>Mutations {startRecord} to {endRecord} of {mutations.length}</a>
-                
-                
 
                     <table className="table table-striped table-bordered table-font">
                         <thead >
@@ -57,7 +55,6 @@ const AdaptiveMutationsTable = ( { mutations=null, residueClick } ) => {
                                     <td><Button size="sm" 
                                                 className="paging-buttons" 
                                                 onClick={()=>residueClick(mutation["position"])}> View</Button></td>
-                                    
                                 </tr>
                             ))}
                         </tbody>

@@ -46,6 +46,7 @@
     "rickshaw": "^1.7.1",
     "sequence-viewer": "^0.2.6",
     "spin.js": "^4.1.2",
+    "taxonium-component": "^2.1.23",
     "timers": "^0.1.1",
     "timers-browserify": "^2.0.12",
     "web-vitals": "^2.1.4"

@@ -12,7 +12,9 @@ const Gap = ({ widthPercent }) => (
 );
 
 const MismatchBar = ({ sequence, referenceSequence, alignedStart, alignedEnd, range }) => {
-    const mismatches = getMismatches(referenceSequence, sequence.seq);
+
+  console.log(referenceSequence)
+    const mismatches = getMismatches(referenceSequence, sequence);
 
     return (
         <div className='grey-bar' style={{ width: `${((alignedEnd - alignedStart)/range)*100}%`, position: 'relative' }}>
@@ -40,23 +42,24 @@ const MismatchBar = ({ sequence, referenceSequence, alignedStart, alignedEnd, ra
 };
 
 
-const MismatchBarRow = ({ sequence, referenceSequence, min, max, range, includeLabel=false }) => {
-  const alignedStart = sequence.seq.search(/[A-Za-z]/);
-  const alignedEnd = sequence.seq.length - sequence.seq.split('').reverse().join('').search(/[A-Za-z]/);
+const MismatchBarRow = ({ sequence, reference_sequence, min, max, range, includeLabel=false }) => {
+  console.log(sequence)
+  const alignedStart = sequence.search(/[A-Za-z]/);
+  const alignedEnd = sequence.length - sequence.split('').reverse().join('').search(/[A-Za-z]/);
 
   return (
     <div className='row-style' style={{ marginTop: '5px' }}>
       {includeLabel && 
         <div className='label-style'>
-          <Link className='custom-link' to={`/sequence/${sequence.query}`} style={{ margin: 0 }}>
+          {/* <Link className='custom-link' to={`/sequence/${sequence.query}`} style={{ margin: 0 }}>
             {sequence.query}
-          </Link>
+          </Link> */}
       </div>
       }
 
       <div className='line-area-style' style={{ height: '20px', display: 'flex', width: '100%' }}>
         <Gap widthPercent={((alignedStart - min) / range) * 100} />
-        <MismatchBar sequence={sequence} referenceSequence={referenceSequence} alignedStart={alignedStart} alignedEnd={alignedEnd} range={range} />
+        <MismatchBar sequence={sequence} referenceSequence={reference_sequence} alignedStart={alignedStart} alignedEnd={alignedEnd} range={range} />
         <Gap widthPercent={((max - alignedEnd) / range) * 100} />
       </div>
     </div>

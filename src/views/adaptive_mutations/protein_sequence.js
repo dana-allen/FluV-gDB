@@ -8,13 +8,14 @@ import { Button } from 'react-bootstrap';
 
 import "../../assets/styles/protein_sequence.css";
 
+import { aaColors, nucColors } from '../../assets/javascript/sequenceViewerHelper';
 
 const sequence = "MERIKELRDLMSQSRTREILTKTTVDHMAIIKKYTSGRQEKNPALRMKWMMAMKYPITADKRIMEMIPERNEQGQTLWSKTNDAGSDRVMVSPLAVTWWNRNGPTTSTVHYPKVYKTYFEKVERLKHGTFGPVHFRNQVKIRRRVDINPGHADLSAKEAQDVIMEVVFPNEVGARILTSESQLTITKEKKEELQDCKIAPLMVAYMLERELVRKTRFLPVAGGTSSVYIEVLHLTQGTCWEQMYTPGGEVRNDDVDQSLIIAARNIVRRATVSADPLASLLEMCHSTQIGGIRMVDILRQNPTEEQAVDICKAAMGLRISSSFSFGGFTFKRTNGSSVKKEEEVLTGNLQTLKIKVHEGYEEFTMVGRRATAILRKATRRLIQLIVSGRDEQSIAEAIIVAMVFSQEDCMIKAVRGDLNFVNRANQRLNPMHQLLRHFQKDAKVLFQNWGIEPIDNVMGMIGILPDMTPSAEMSLRGVRVSKMGVDEYSSTERVVVSIDRFLRVRDQQGNVLLSPEEVSETQGTEKLTITYSSSMMWEINGPESVLVNTYQWIIRNWETVKIQWSQDPTMLYNKMEFESFQSLVPKAARSQYSGFVRTLFQQMRDVLGTFDTVQIIKLLPFAAAPPEPSRMQFSSLTVNVRGSGMRILVRGNSPVFNYNKATKRLTVLGKDAGALTEDPDEGTAGVESAVLRGFLILGREDKRYGPALSINELSNLAKGEKANVLIMQGDVVLVMKRKRDFSILTDSQTATKRIRMAIN*"
 
 
 
-export default function ProteinSequence({selectedSegement, mutations, residueClick}) {
-    console.log(mutations)
+export default function ProteinSequence({selectedSegement, mutations, residueClick, translated_sequences}) {
+    console.log(translated_sequences)
     const mutatedResidues = [...new Set(mutations.map(m => Number(m.position)))];
     const BLOCK_SIZE = 10;
     const BLOCKS_PER_ROW = 8; // 80 AAs per row
@@ -143,6 +144,39 @@ export default function ProteinSequence({selectedSegement, mutations, residueCli
                                         {m.doi && <Link className='gdb-link' to={`https://www.ncbi.nlm.nih.gov/pubmed/${m.doi}`} target="_blank"> <FontAwesomeIcon icon={faLink} /> {m.authors} </Link>}
                                         </div>
                                     </li>
+                                    
+                                ))}
+                            </ul>
+                        </DialogContent>
+                        <DialogContent>
+                            <strong>Residue {selectedPosition} mutations for {selectedSegement}:</strong>
+                            <ul>
+                                {translated_sequences.map((m, index) => (
+                                    <div
+                                                    key={index}
+                                                    style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize:'10px' }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                        width: '120px', 
+                                                        textAlign: 'right',
+                                                        marginRight: '12px',
+                                                        whiteSpace: 'nowrap'
+                                                        }}
+                                                    >
+                                                        <em>{translated_sequences[index].primary_accession}</em>
+                                                    </div>
+                                                <div
+                                                    className="block"
+                                                    style={{
+                                                    width: '3%',
+                                                    backgroundColor: aaColors[translated_sequences[index].protein[selectedPosition]]
+                                                    }}
+                                                >
+                                                    <b>{translated_sequences[index].protein[selectedPosition]}</b>
+                                                </div>
+                                                </div>
+                                   
                                     
                                 ))}
                             </ul>

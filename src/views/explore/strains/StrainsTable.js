@@ -25,7 +25,7 @@ const StrainsTable = ( { data } ) => {
                 <table className="table table-striped table-bordered table-font">
                     <thead >
                         <tr>
-                            <th rowSpan={2}>Isolate</th>
+                            <th rowSpan={2}>Strain</th>
                             <th rowSpan={2}>Country</th>
                             <th rowSpan={2}>Host</th>
                             <th rowSpan={2}>Collection Date</th>
@@ -43,14 +43,14 @@ const StrainsTable = ( { data } ) => {
                             <td>
                                 <b>
                                 <Link className="gdb-link" to={`/strain/${encodeURIComponent(sequence.isolate)}`} >
-                                    {sequence.isolate}
+                                    {sequence.strain}
                                 </Link>
                                 </b>
                             </td>
 
                             <td>{sequence.country || "-"}</td>
                             <td><em>{sequence.host || "-"}</em></td>
-                            <td></td>
+                            <td>{sequence.collection_year || "-"}</td>
                             <td>
                                 <Link className="gdb-link" to={`/sequence/${sequence.seg_1}`}>
                                     {sequence.seg_1}
